@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom"
 export default function Login() {
   const emailRef = useRef()
   const passwordRef = useRef()
-  const { login } = useAuth()
+  const { login, currentUser } = useAuth()
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
@@ -18,7 +18,7 @@ export default function Login() {
       setError("")
       setLoading(true)
       await login(emailRef.current.value, passwordRef.current.value)
-      navigate("/")
+      navigate("/dashboard")
     } 
     catch {
       setError("Failed to log in")

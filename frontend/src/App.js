@@ -7,20 +7,22 @@ import { ThemeProvider } from "@mui/material/styles"
 import theme from "./Theme"
 import Signup from "./pages/Signup/Signup"
 import { AuthProvider } from "./context/AuthContext"
+import Login from "./pages/Login/Login"
 
 function App() {
 	return (
-		<AuthProvider>
 			<ThemeProvider theme={theme}>
 				<BrowserRouter>
 					<Navbar />
-					<Routes>
-						<Route path="/" element={<Test />} />
-						<Route path="/signup" element={<Signup />} />
-					</Routes>
+					<AuthProvider>
+						<Routes>
+							<Route path="/" element={<Test />} />
+							<Route path="/signup" element={<Signup />} />
+							<Route path="/login" element={<Login />} />
+						</Routes>
+					</AuthProvider>
 				</BrowserRouter>
 			</ThemeProvider>
-		</AuthProvider>
 	)
 }
 

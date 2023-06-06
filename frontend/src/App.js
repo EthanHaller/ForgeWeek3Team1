@@ -5,6 +5,7 @@ import Navbar from "./Components/Navigation/Navbar"
 import Test from "./Components/Test/Test"
 import { ThemeProvider } from "@mui/material/styles"
 import theme from "./Theme"
+import SearchResultsPage from "./pages/searchResults/searchResultsPage"
 
 function App() {
 	return (
@@ -13,6 +14,7 @@ function App() {
 				<Navbar />
 				<Routes>
 					<Route path="/" element={<Test />} />
+					<Route path="/products/:category" element={<SearchResultsPage />} />
 				</Routes>
 			</BrowserRouter>
 		</ThemeProvider>

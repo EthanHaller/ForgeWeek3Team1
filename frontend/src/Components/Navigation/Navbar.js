@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react"
 import { AppBar, Toolbar, IconButton } from "@mui/material"
-import MenuIcon from "@mui/icons-material/Menu"
 import MobileNavbar from "./MobileNavbar"
 import DesktopNavbar from "./DesktopNavbar"
+import MenuIcon from '@mui/icons-material/Menu'
 
 function Navbar() {
 	const [isMobile, setIsMobile] = useState(false)

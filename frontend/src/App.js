@@ -1,8 +1,9 @@
 import React from "react"
 import "./App.css"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Navbar from "./components/Navigation/Navbar"
-import Test from "./components/Test/Test"
+import Navbar from "./Components/Navigation/Navbar"
+import Test from "./Components/Test/Test"
+import SearchResultsPage from './pages/searchResults/searchResultsPage'
 import { ThemeProvider } from "@mui/material/styles"
 import theme from "./Theme"
 import HomePage from "./components/HomePage/HomePage";
@@ -15,6 +16,7 @@ function App() {
 				<Navbar />
 				<Routes>
 					<Route path="/" element={<HomePage />} />
+					<Route path="/products/:category" element={<SearchResultsPage />} />
 				</Routes>
 			</BrowserRouter>
 		</ThemeProvider>

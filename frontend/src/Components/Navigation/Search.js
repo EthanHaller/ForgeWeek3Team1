@@ -7,12 +7,14 @@ import {
 	Typography,
 } from "@mui/material"
 import React, { useState } from "react"
+import { Navigate, redirect } from "react-router-dom"
 import SearchIcon from "@mui/icons-material/Search"
 import CloseIcon from "@mui/icons-material/Close"
 
 function Search() {
 	const [searchValue, setSearchValue] = useState("")
 	const [isSearchDrawerOpen, setIsSearchDrawerOpen] = useState(false)
+    const [alreadySearched, setAlreadySearched] = useState(false)
 
 	const toggleSearchDrawer = () => {
 		setIsSearchDrawerOpen(!isSearchDrawerOpen)
@@ -21,31 +23,11 @@ function Search() {
 	const handleSearch = (e) => {
 		e.preventDefault()
 		if (searchValue === "") return
-		console.log("submitting")
+		console.log("Searching for " + searchValue)
+        setAlreadySearched(true)
 	}
 
-	// return (
-	// 	<Box
-	// 		sx={{
-	//             mr: '15px',
-	// 			borderRadius: "10px",
-	// 			backgroundColor: "rgba(0, 0, 0, 0.1)",
-	// 			"&:hover": { backgroundColor: "rgba(0, 0, 0, 0.2)" },
-	// 		}}
-	// 	>
-	// 		<form onSubmit={handleSearch}>
-	// 			<InputBase
-	// 				placeholder="Search..."
-	// 				onChange={(e) => setSearchValue(e.target.value)}
-	// 				sx={{ pl: "15px", transition: '' }}
-	// 			/>
-	// 			<IconButton type="submit" onClick={handleSearch}>
-	// 				<SearchIcon />
-	// 			</IconButton>
-	// 		</form>
-	// 	</Box>
-	// )
-
+    if(alreadySearched) return <Navigate to={`/products/${searchValue}`} />
 	return (
 		<>
 			<IconButton onClick={toggleSearchDrawer}>
@@ -60,7 +42,7 @@ function Search() {
 					</Box>
 					<Typography
 						variant="h2"
-						sx={{ ml: "10%", fontSize: "calc(32px + 0.5vw)" }}
+						sx={{ ml: "10%", fontSize: "calc(32px + 0.5vw)", textAlign: 'left' }}
 					>
 						Search
 					</Typography>

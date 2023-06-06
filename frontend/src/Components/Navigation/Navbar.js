@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { AppBar, Toolbar, IconButton } from "@mui/material"
-import MenuIcon from "@mui/icons-material/Menu"
+import { AppBar, Toolbar } from "@mui/material"
 import MobileNavbar from "./MobileNavbar"
 import DesktopNavbar from "./DesktopNavbar"
 
@@ -9,7 +8,7 @@ function Navbar() {
 
 	useEffect(() => {
 		const handleResize = () => {
-			setIsMobile(window.innerWidth <= 768)
+			setIsMobile(window.innerWidth <= 600)
 		}
 
 		window.addEventListener("resize", handleResize)

@@ -13,6 +13,7 @@ import {
 import { Link } from "react-router-dom"
 import MenuIcon from "@mui/icons-material/Menu"
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
+import Search from "./Search"
 
 function MobileNavbar() {
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false)
@@ -22,24 +23,47 @@ function MobileNavbar() {
 	}
 	return (
 		<>
-			<Box sx={{ width: '30vw', display: 'flex', justifyContent: 'flex-start' }}>
+			<Box
+				sx={{
+					width: "30vw",
+					display: "flex",
+					justifyContent: "flex-start",
+				}}
+			>
 				<IconButton aria-label="menu" onClick={toggleDrawer}>
-					<MenuIcon />
+					<MenuIcon fontSize="large" />
 				</IconButton>
 			</Box>
-			<Box sx={{ width: '30vw', display: 'flex', justifyContent: 'center' }}>
+			<Box
+				sx={{
+					width: "30vw",
+					display: "flex",
+					justifyContent: "center",
+				}}
+			>
 				<Typography
-					sx={{ textDecoration: "none", color: "black" }}
-					variant="h2"
+					sx={{
+						textDecoration: "none",
+						color: "black",
+						fontSize: "calc(24px + 1vw)",
+					}}
+					variant="h1"
 					component={Link}
 					to="/"
 				>
 					AppName
 				</Typography>
 			</Box>
-			<Box sx={{ width: '30vw', display: 'flex', justifyContent: 'flex-end' }}>
+			<Box
+				sx={{
+					width: "30vw",
+					display: "flex",
+					justifyContent: "flex-end",
+				}}
+			>
+				<Search />
 				<IconButton aria-label="cart" component={Link} to="/cart">
-					<ShoppingCartIcon />
+					<ShoppingCartIcon fontSiz="large" />
 				</IconButton>
 			</Box>
 			<Drawer open={isDrawerOpen} onClick={toggleDrawer} anchor="left">

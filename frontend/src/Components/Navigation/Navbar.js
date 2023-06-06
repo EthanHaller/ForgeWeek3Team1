@@ -23,7 +23,7 @@ function Navbar() {
 	return (
 		<>
 			<AppBar position="fixed">
-				<Toolbar>
+				<Toolbar sx={{ justifyContent: "space-between" }}>
 					{isMobile ? <MobileNavbar /> : <DesktopNavbar />}
 				</Toolbar>
 			</AppBar>

@@ -1,10 +1,12 @@
 import React from "react"
 import "./App.css"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Navbar from "./Components/Navigation/Navbar"
-import Test from "./Components/Test/Test"
+import Navbar from "./components/Navigation/Navbar"
+import Test from "./components/Test/Test"
 import { ThemeProvider } from "@mui/material/styles"
 import theme from "./Theme"
+import HomePage from "./components/HomePage/HomePage";
+
 
 function App() {
 	return (
@@ -12,7 +14,7 @@ function App() {
 			<BrowserRouter>
 				<Navbar />
 				<Routes>
-					<Route path="/" element={<Test />} />
+					<Route path="/" element={<HomePage />} />
 				</Routes>
 			</BrowserRouter>
 		</ThemeProvider>

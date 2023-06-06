@@ -3,6 +3,7 @@ import "./App.css"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Navbar from "./Components/Navigation/Navbar"
 import Test from "./Components/Test/Test"
+import SearchResultsPage from './pages/searchResults/searchResultsPage'
 import { ThemeProvider } from "@mui/material/styles"
 import theme from "./Theme"
 import SearchResultsPage from "./pages/searchResults/searchResultsPage"

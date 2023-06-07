@@ -9,7 +9,7 @@ import Button from "@mui/material/Button";
 import { Card, CardContent, Typography, Box, Container } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import {useCookies} from "react-cookie";
+import { useCookies } from "react-cookie";
 
 function Cart() {
 	const [cart, setCart] = useState([1, 2, 4]);
@@ -17,19 +17,21 @@ function Cart() {
 	const [recItems, setRecItems] = useState([]);
 	const [removeItemId, setRemoveItemId] = useState(null);
 	const [confirmationOpen, setConfirmationOpen] = useState(false);
-	const [cookies, setCookie, removeCookie] = useCookies(["cart"]);
+	//const [cookies, setCookie, removeCookie] = useCookies(["cart"]);
 
 	const { testProducts, setTestProducts } = useContext(CartContext);
 
+	//i just commented this out but it doesn't seem to work for me?
+	/*
 	useEffect(() => {
 		if (cookies.cart) {
 			setCart(JSON.parse(cookies.cart));
 		}
 	}, []);
-		
+	*/
 
 	useEffect(() => {
-		setCookie("cart", JSON.stringify(cart), { path: "/" });
+		//setCookie("cart", JSON.stringify(cart), { path: "/" });
 		fetchItems();
 		console.log(testProducts);
 
@@ -69,6 +71,11 @@ function Cart() {
 
 		setConfirmationOpen(false);
 		setRemoveItemId(null);
+	};
+
+	const addToCart = (itemID) => {
+		const updatedCart = [...testProducts, itemID];
+		setTestProducts(updatedCart);
 	};
 
 	const handleCloseConfirmation = () => {
@@ -196,6 +203,7 @@ function Cart() {
 														borderRadius: "4px",
 													}}
 													size="small"
+													onClick={() => addToCart(item2.id)}
 												>
 													<AddShoppingCartIcon />
 												</IconButton>

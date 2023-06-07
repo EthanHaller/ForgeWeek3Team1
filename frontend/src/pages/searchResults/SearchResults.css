@@ -92,3 +92,38 @@ h6 {
 .cardPic {
     object-fit: contain;
 }
+
+.cardDesktop {
+    max-height: 500px;
+}
+
+@media screen and (min-width: 1000px) {
+    .mobileFilter {
+        display: none;
+    }
+}
+
+summary {
+    display: block;
+    padding-left: 1rem;
+    position: relative;
+    cursor: pointer;
+    width: fit-content;
+}
+
+summary:before {
+    content: '';
+    border-width: .4rem;
+    border-style: solid;
+    border-color: transparent transparent transparent black;
+    position: absolute;
+    top: 0.3rem;
+    left: 0rem;
+    transform: rotate(0);
+    transform-origin: .2rem 50%;
+    transition: .25s transform ease;
+}
+
+details[open]>summary:before {
+    transform: rotate(90deg);
+}

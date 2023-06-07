@@ -32,14 +32,23 @@ export default function SearchResultsPage() {
 
     function filterPrice() {
         if (priceFilter.length > 0) {
-            filterColor("second");
-            setFilteredProducts(partFiltered.filter((product) => {
+            let temp = products.results.filter((product) => {
                 return isRightPrice(product)
-            }))
-            return;
+            })
+            if (colorFilter.length > 0) {
+                temp = temp.filter((product) => {
+                    if (!product.colors)
+                        return false;
+                    return isRightColor(product)
+                })
+            }
+            setFilteredProducts(temp);
         }
-        else {
+        else if (colorFilter.length === 0) {
             setFilteredProducts(products.results)
+        }
+        else if (colorFilter.length > 0) {
+            filterColor();
         }
     }
 
@@ -71,24 +80,26 @@ export default function SearchResultsPage() {
         return isPrice;
     }
 
-    function filterColor(second) {
+    function filterColor() {
         if (colorFilter.length > 0) {
-            {
-                second ? setPartFiltered(products.results.filter((product) => {
-                    if (!product.colors)
-                        return false;
-                    return isRightColor(product)
-                })) :
-                    setFilteredProducts(products.results.filter((product) => {
-                        if (!product.colors)
-                            return false;
-                        return isRightColor(product)
-                    }))
+            let temp = products.results.filter((product) => {
+                if (!product.colors)
+                    return false;
+                return isRightColor(product)
+            })
+            if (priceFilter.length > 0) {
+                console.log(filteredProducts)
+                temp = temp.filter((product) => {
+                    return isRightPrice(product)
+                })
             }
+            setFilteredProducts(temp);
         }
-        else {
-            setPartFiltered(products.results)
+        else if (priceFilter.length === 0) {
             setFilteredProducts(products.results)
+        }
+        else if (priceFilter.length > 0) {
+            filterPrice();
         }
     }
 

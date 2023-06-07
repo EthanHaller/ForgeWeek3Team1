@@ -9,6 +9,7 @@ import theme from "./Theme"
 import HomePage from "./Components/HomePage/HomePage";
 import CheckoutPage from "./Components/Checkout/CheckoutPage"
 import { useState, createContext } from "react";
+import Cart from "./Components/Cart/Cart"
 
 function App() {
 	return (
@@ -19,6 +20,7 @@ function App() {
 					<Route path="/" element={<HomePage />} />
 					<Route path="/products/:category" element={<SearchResultsPage />} />
 					<Route path="/checkout" element={<CheckoutPage />} />
+					<Route path='/cart' element={<Cart />} />
 				</Routes>
 			</BrowserRouter>
 		</ThemeProvider>

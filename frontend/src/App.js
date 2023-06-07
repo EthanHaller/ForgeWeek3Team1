@@ -7,6 +7,7 @@ import SearchResultsPage from './pages/searchResults/searchResultsPage'
 import { ThemeProvider } from "@mui/material/styles"
 import theme from "./Theme"
 import HomePage from "./Components/HomePage/HomePage";
+import CheckoutPage from "./Components/Checkout/CheckoutPage"
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
 				<Routes>
 					<Route path="/" element={<HomePage />} />
 					<Route path="/products/:category" element={<SearchResultsPage />} />
+					<Route path="/checkout" element={<CheckoutPage />} />
 				</Routes>
 			</BrowserRouter>
 		</ThemeProvider>

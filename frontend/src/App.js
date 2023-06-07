@@ -8,7 +8,7 @@ import { ThemeProvider } from "@mui/material/styles"
 import theme from "./Theme"
 import HomePage from "./Components/HomePage/HomePage";
 import CheckoutPage from "./Components/Checkout/CheckoutPage"
-
+import { useState, createContext } from "react";
 
 function App() {
 	return (

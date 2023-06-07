@@ -193,30 +193,9 @@ function Cart() {
 								</Card>
 							))}
 						</Box>
+						<TotalAndCheckout price={totalPrice.toFixed(2)} />
 					</Container>
 
-					<br></br>
-
-					<Box>
-						<Grid
-							container
-							spacing={8}
-							alignItems="right"
-							justifyContent="right"
-							width={"90%"}
-						>
-							<Grid item>
-								<Typography variant="h4">
-									Total: ${totalPrice.toFixed(2)}
-								</Typography>
-							</Grid>
-							<Grid item>
-								<TotalAndCheckout />
-							</Grid>
-						</Grid>
-					</Box>
-					<br></br>
-					<br></br>
 					<Typography
 						fontSize="40px"
 						variant="h6"

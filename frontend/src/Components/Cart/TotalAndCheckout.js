@@ -1,9 +1,9 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Divider, Typography } from "@mui/material";
 import axios from "axios";
 import { useContext, useState, useEffect } from "react";
 import CartContext from "./CartContext";
 
-function TotalAndCheckout() {
+function TotalAndCheckout({ price }) {
 	const { testProducts, setTestProducts } = useContext(CartContext);
 	const [cartItems, setCartItems] = useState([]);
 
@@ -36,8 +36,9 @@ function TotalAndCheckout() {
 	return (
 		<>
 			<Box
-				sx={{ width: "100%", display: "flex", justifyContent: "space-between" }}
+				sx={{ width: "100%", display: "flex", justifyContent: "space-between", mt: '25px', mb: '20px' }}
 			>
+                <Typography variant='h3'>{`Total: $${price}`}</Typography>
 				<Button
 					onClick={handleCheckout}
 					variant="contained"
@@ -46,6 +47,7 @@ function TotalAndCheckout() {
 					CHECK OUT
 				</Button>
 			</Box>
+            <Divider sx={{ mb: '80px'}}/>
 		</>
 	);
 }

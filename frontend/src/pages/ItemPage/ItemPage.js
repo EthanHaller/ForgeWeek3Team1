@@ -32,12 +32,13 @@ export default function ItemPage() {
         getItem();
 
     }, [])
+
     return (
         <>
             {thisItem &&
                 <div style={{ display: "flex", flexDirection: "column" }}>
                     <Button style={{ marginTop: "3%", marginLeft: "13.5%", width: "fit-content", color: "gray", textTransform: "none" }}
-                        component={Link} to={"/products" + "/" + category}>{"< Back to Results"}</Button>
+                        component={Link} to={"/products/" + category}>{"< Back to Products"}</Button>
                     <div className="itemStructure">
                         <div className="halves">
                             <div className="quarter">

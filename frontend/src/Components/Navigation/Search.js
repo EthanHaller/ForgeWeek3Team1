@@ -20,7 +20,7 @@ function Search({ isMobile }) {
 		setAlreadySearched(true)
 	}
 
-	if (alreadySearched) return <Navigate to={`/products/${searchValue}`} />
+	if (alreadySearched) return <Navigate to={`/products/q=${searchValue}`} />
 	return (
 		<>
 			<IconButton onClick={toggleSearchDrawer}>

@@ -1,5 +1,6 @@
 var express = require("express")
-var stripe = require('stripe')(process.env.REACT_APP_STRIPE_SECRET)
+var Stripe = require('stripe')
+var stripe = Stripe(process.env.REACT_APP_STRIPE_SECRET)
 var router = express.Router()
 
 const domain = 'http://localhost:3000'
@@ -22,10 +23,9 @@ router.post("/", async (req, res, next) => {
 		],
 		mode: "payment",
 		success_url: "http://localhost:3000/order/success?session_id={CHECKOUT_SESSION_ID}",
-		cancel_url: '$http://localhost:3000/cart',
+		cancel_url: 'http://localhost:3000/cart',
 	});
-
-    res.redirect(303, session.url);
+    res.send(session.url);
 })
 
 module.exports = router

@@ -10,6 +10,7 @@ import HomePage from "./Components/HomePage/HomePage";
 import CheckoutPage from "./Components/Checkout/CheckoutPage"
 import { useState, createContext } from "react";
 import Cart from "./Components/Cart/Cart"
+import CheckoutSuccessPage from "./Components/Checkout/CheckoutSuccessPage"
 
 function App() {
 	return (
@@ -21,6 +22,7 @@ function App() {
 					<Route path="/products/:category" element={<SearchResultsPage />} />
 					<Route path="/checkout" element={<CheckoutPage />} />
 					<Route path='/cart' element={<Cart />} />
+					<Route path='/order/success' element={<CheckoutSuccessPage />} />
 				</Routes>
 			</BrowserRouter>
 		</ThemeProvider>

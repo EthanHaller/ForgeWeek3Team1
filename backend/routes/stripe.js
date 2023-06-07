@@ -28,4 +28,10 @@ router.post("/", async (req, res, next) => {
     res.send(session.url);
 })
 
+router.get('/order/success', async (req, res, next) => {
+    const session = await stripe.checkout.sessions.retrieve(req.query.session_id)
+    
+    res.send({ results: session.customer_details.name })
+})
+
 module.exports = router

@@ -33,8 +33,8 @@ function Search() {
 			<IconButton onClick={toggleSearchDrawer}>
 				<SearchIcon fontSize="large" />
 			</IconButton>
-			<Drawer anchor="right" open={isSearchDrawerOpen}>
-				<Box sx={{ width: { xs: "100vw", sm: "400px" } }}>
+			<Drawer anchor="right" open={isSearchDrawerOpen} onClick={toggleSearchDrawer}>
+				<Box sx={{ width: { xs: "90vw", sm: "400px" } }}>
 					<Box sx={{ display: "flex", justifyContent: "flex-end" }}>
 						<IconButton onClick={toggleSearchDrawer}>
 							<CloseIcon fontSize="large" />
@@ -42,7 +42,7 @@ function Search() {
 					</Box>
 					<Typography
 						variant="h2"
-						sx={{ ml: "10%", fontSize: "calc(32px + 0.5vw)", textAlign: 'left' }}
+						sx={{ ml: "10%", fontSize: "calc(32px + 0.3vw)", textAlign: 'left' }}
 					>
 						Search
 					</Typography>
@@ -58,7 +58,7 @@ function Search() {
 						<TextField
 							onChange={(e) => setSearchValue(e.target.value)}
 							variant="outlined"
-							placeholder="Search..."
+							placeholder="Products, Categories, etc."
 							sx={{ width: "80%" }}
 						/>
 						<IconButton type="submit">

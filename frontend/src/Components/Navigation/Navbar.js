@@ -1,35 +1,20 @@
 import React, { useState, useEffect } from "react"
-import axios from "axios"
-import {
-	AppBar,
-	Toolbar,
-	IconButton,
-	Drawer,
-	Typography,
-	List,
-	ListItem,
-	ListItemButton,
-	ListItemIcon,
-	ListItemText,
-	Box,
-} from "@mui/material"
+import { AppBar, Toolbar, IconButton, Typography, Box } from "@mui/material"
 import { Link } from "react-router-dom"
 import MenuIcon from "@mui/icons-material/Menu"
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
-import CloseIcon from "@mui/icons-material/Close"
 import Search from "./Search"
+import CategoriesDrawer from "./CategoriesDrawer"
 
 function Navbar() {
 	const [isMobile, setIsMobile] = useState(false)
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false)
-	const [allCategories, setAllCategories] = useState(null)
 
 	const toggleDrawer = () => {
 		setIsDrawerOpen(!isDrawerOpen)
 	}
 
 	useEffect(() => {
-		getAllCategories()
 		const handleResize = () => {
 			setIsMobile(window.innerWidth <= 600)
 		}
@@ -41,14 +26,6 @@ function Navbar() {
 			window.removeEventListener("resize", handleResize)
 		}
 	}, [])
-
-	const getAllCategories = () => {
-		axios
-			.get("http://localhost:9000/categories")
-			.then((res) => setAllCategories(res.data.results))
-	}
-
-	console.log(allCategories)
 
 	return (
 		<>
@@ -62,7 +39,9 @@ function Navbar() {
 						}}
 					>
 						<IconButton aria-label="menu" onClick={toggleDrawer}>
-							<MenuIcon fontSize="large" />
+							<MenuIcon
+								fontSize={isMobile ? "medium" : "large"}
+							/>
 						</IconButton>
 					</Box>
 					<Box
@@ -92,57 +71,21 @@ function Navbar() {
 							justifyContent: "flex-end",
 						}}
 					>
-						<Search />
+						<Search isMobile={isMobile} />
 						<IconButton
 							aria-label="cart"
 							component={Link}
 							to="/cart"
 						>
-							<ShoppingCartIcon fontSize="large" />
+							<ShoppingCartIcon
+								fontSize={isMobile ? "medium" : "large"}
+							/>
 						</IconButton>
 					</Box>
-					<Drawer
-						open={isDrawerOpen}
-						onClick={toggleDrawer}
-						anchor="left"
-					>
-						<Box
-							sx={{ display: "flex", justifyContent: "flex-end" }}
-						>
-							<IconButton onClick={toggleDrawer}>
-								<CloseIcon fontSize="large" />
-							</IconButton>
-						</Box>
-						<Typography
-							variant="h3"
-							sx={{
-								ml: "5%",
-                                mb: '2%',
-								fontSize: "calc(28px + 0.3vw)",
-								textAlign: "left",
-							}}
-						>
-							Search By Category
-						</Typography>
-						<List disablePadding sx={{ width: { xs: "90vw", sm: "400px" } }}>
-							{allCategories &&
-								allCategories.map((category) => {
-									return (
-										<ListItem key={category.raw} sx={{ py: '0' }}>
-											<ListItemButton
-												component={Link}
-												to={`/search-results/${category.raw}`}
-											>
-												<ListItemText
-													primary={category.formatted}
-                                                    primaryTypographyProps={{ fontSize: 'calc(16px + 0.3vw)'}}
-												/>
-											</ListItemButton>
-										</ListItem>
-									)
-								})}
-						</List>
-					</Drawer>
+					<CategoriesDrawer
+						toggleDrawer={toggleDrawer}
+						isDrawerOpen={isDrawerOpen}
+					/>
 				</Toolbar>
 			</AppBar>
 		</>

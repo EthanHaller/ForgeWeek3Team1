@@ -1,20 +1,13 @@
-import {
-	Box,
-	Drawer,
-	IconButton,
-	InputBase,
-	TextField,
-	Typography,
-} from "@mui/material"
+import { Box, Drawer, IconButton, TextField, Typography } from "@mui/material"
 import React, { useState } from "react"
-import { Navigate, redirect } from "react-router-dom"
+import { Navigate } from "react-router-dom"
 import SearchIcon from "@mui/icons-material/Search"
 import CloseIcon from "@mui/icons-material/Close"
 
-function Search() {
+function Search({ isMobile }) {
 	const [searchValue, setSearchValue] = useState("")
 	const [isSearchDrawerOpen, setIsSearchDrawerOpen] = useState(false)
-    const [alreadySearched, setAlreadySearched] = useState(false)
+	const [alreadySearched, setAlreadySearched] = useState(false)
 
 	const toggleSearchDrawer = () => {
 		setIsSearchDrawerOpen(!isSearchDrawerOpen)
@@ -24,16 +17,20 @@ function Search() {
 		e.preventDefault()
 		if (searchValue === "") return
 		console.log("Searching for " + searchValue)
-        setAlreadySearched(true)
+		setAlreadySearched(true)
 	}
 
-    if(alreadySearched) return <Navigate to={`/products/${searchValue}`} />
+	if (alreadySearched) return <Navigate to={`/products/${searchValue}`} />
 	return (
 		<>
 			<IconButton onClick={toggleSearchDrawer}>
-				<SearchIcon fontSize="large" />
+				<SearchIcon fontSize={isMobile ? "medium" : "large"} />
 			</IconButton>
-			<Drawer anchor="right" open={isSearchDrawerOpen} onClick={toggleSearchDrawer}>
+			<Drawer
+				anchor="right"
+				open={isSearchDrawerOpen}
+				onClick={toggleSearchDrawer}
+			>
 				<Box sx={{ width: { xs: "90vw", sm: "400px" } }}>
 					<Box sx={{ display: "flex", justifyContent: "flex-end" }}>
 						<IconButton onClick={toggleSearchDrawer}>
@@ -42,7 +39,11 @@ function Search() {
 					</Box>
 					<Typography
 						variant="h2"
-						sx={{ ml: "10%", fontSize: "calc(32px + 0.3vw)", textAlign: 'left' }}
+						sx={{
+							ml: "10%",
+							fontSize: "calc(32px + 0.3vw)",
+							textAlign: "left",
+						}}
 					>
 						Search
 					</Typography>

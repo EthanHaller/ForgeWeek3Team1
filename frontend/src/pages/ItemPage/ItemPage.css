@@ -1,49 +1,100 @@
-.itemStructure {
-    display: flex;
+@media screen and (min-width: 1000px) {
+
+
+    .itemStructure {
+        display: flex;
+    }
+
+    .halves {
+        width: 50%;
+        display: flex;
+    }
+
+    .quarter {
+        width: 25%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .imageArea {
+        width: 75%;
+        border: groove;
+    }
+
+    .smallPic {
+        width: 50%;
+        margin-top: none;
+        margin-left: auto;
+        margin-bottom: 2%;
+        margin-right: 3%;
+    }
+
+    .smallPic:hover {
+        opacity: 50%;
+        cursor: pointer;
+    }
+
+    .boxes:hover {
+        opacity: 50%;
+        cursor: pointer;
+    }
+
+    .otherItemsCards {
+        max-height: 500px;
+        max-width: 300px;
+        min-width: 200px;
+        margin-left: 3%;
+    }
+
+    .otherItems {
+        display: flex;
+    }
+
+    .mobileQuarter {
+        display: none;
+    }
+
+    .mobileTitle {
+        display: none;
+    }
 }
 
-.halves {
-    width: 50%;
-    display: flex;
-}
+@media screen and (max-width: 1000px) {
+    .imageArea {
+        max-width: 100%;
+        max-height: 500px;
+        overflow: hidden;
+        border: groove;
+    }
 
-.quarter {
-    width: 25%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
+    .otherItemsCards {
+        margin-left: 5%;
+        height: auto;
+        max-height: 150px;
+    }
 
-.imageArea {
-    width: 75%;
-    border: groove;
-}
+    .smallPic {
+        max-width: 50px;
+        margin: 2%;
+        margin-top: 0;
+    }
 
-.smallPic {
-    width: 50%;
-    margin-top: none;
-    margin-left: auto;
-    margin-bottom: 2%;
-    margin-right: 3%;
-}
+    .quarter {
+        display: none;
+    }
 
-.smallPic:hover {
-    opacity: 50%;
-    cursor: pointer;
-}
+    .mobileQuarter {
+        margin-top: 5%;
+        display: flex;
+        width: fit-content;
+    }
 
-.boxes:hover {
-    opacity: 50%;
-    cursor: pointer;
-}
+    .desktopTitle {
+        display: none;
+    }
 
-.otherItemsCards {
-    max-height: 500px;
-    max-width: 300px;
-    min-width: 200px;
-    margin-left: 3%;
-}
-
-.otherItems {
-    display: flex;
+    .mobileTitle {
+        margin-left: 5%;
+    }
 }

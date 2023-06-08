@@ -52,7 +52,6 @@ export default function ItemPage() {
     useEffect(() => {
         if (thisItem)
             if (thisItem.item.colors) {
-                console.log("i work")
                 setColor(thisItem.item.colors[0])
             }
     }, [thisItem])
@@ -94,15 +93,38 @@ export default function ItemPage() {
                                             style={{ boxShadow: currentBicPic === element ? "0 0 5px 8px #99a98F" : "none", border: currentBicPic === element ? "none" : "groove" }} />
                                 )}
                             </div>
+                            <div className="mobileTitle">
+                                <h2 style={{ textAlign: "left", marginTop: "0%" }}>{thisItem.item.title}</h2>
+                                <h3 style={{ textAlign: "left", marginTop: "0%", display: "flex" }}>{thisItem.item.rating} {<Stars number={thisItem.item.rating} />}</h3>
+                            </div>
                             <div className="imageArea">
                                 <img src={currentBicPic} style={{ width: "100%" }} />
+                            </div>
+                            <div className="mobileQuarter">
+                                <img src={thisItem.item.thumbnail} className="smallPic" onClick={() => {
+                                    setCurrentBigPic(thisItem.item.thumbnail);
+                                }}
+                                    style={{
+                                        boxShadow: currentBicPic === thisItem.item.thumbnail ? "0 0 5px 8px #99a98F" : "none",
+                                        border: currentBicPic === thisItem.item.thumbnail ? "none" : "groove"
+                                    }} />
+                                {thisItem.item.images.map((element) =>
+                                    element === thisItem.item.thumbnail ? <p1></p1> :
+                                        <img src={element} alt="Pictures of product" className="smallPic"
+                                            onClick={() => {
+                                                setCurrentBigPic(element);
+                                            }}
+                                            style={{ boxShadow: currentBicPic === element ? "0 0 5px 8px #99a98F" : "none", border: currentBicPic === element ? "none" : "groove" }} />
+                                )}
                             </div>
                         </div>
                         <div className="halves">
                             <div className="halves" style={{ marginLeft: "5%", flexDirection: "column" }}>
-                                <h2 style={{ textAlign: "left", marginTop: "0%" }}>{thisItem.item.title}</h2>
-                                <h3 style={{ textAlign: "left", marginTop: "0%", display: "flex" }}>{thisItem.item.rating} {<Stars number={thisItem.item.rating} />}</h3>
-                                <Divider sx={{ width: "90%", backgroundColor: "gray" }} />
+                                <div className="desktopTitle">
+                                    <h2 style={{ textAlign: "left", marginTop: "0%" }}>{thisItem.item.title}</h2>
+                                    <h3 style={{ textAlign: "left", marginTop: "0%", display: "flex" }}>{thisItem.item.rating} {<Stars number={thisItem.item.rating} />}</h3>
+                                    <Divider sx={{ width: "90%", backgroundColor: "gray" }} />
+                                </div>
                                 <h3 style={{ color: "red", textAlign: "left", marginTop: "0%", height: "min-content" }}
                                 >
                                     -25% <h3 style={{ color: "black", textAlign: "left", marginTop: "0%" }}>

@@ -145,10 +145,9 @@ function Cart() {
 				}}
 			>
 				<Typography
-					fontSize="40px"
 					variant="h6"
 					align="center"
-					sx={{ padding: "0px" }}
+					sx={{ padding: "0px", fontSize: 'calc(32px + 0.5vw)' }}
 				>
 					My Cart
 				</Typography>
@@ -197,10 +196,9 @@ function Cart() {
 					</Container>
 
 					<Typography
-						fontSize="40px"
 						variant="h6"
 						align="center"
-						sx={{ padding: "0px" }}
+						sx={{ padding: "0px", fontSize: 'calc(32px + 0.5vw)' }}
 					>
 						Recommended Items
 					</Typography>

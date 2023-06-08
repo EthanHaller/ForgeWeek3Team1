@@ -2,6 +2,7 @@ import React from 'react';
 import { styled } from "@mui/system";
 import { Typography, Button, Grid } from "@mui/material";
 import { Link } from 'react-router-dom';
+import logo from './logo.png';
 
 const StyledHeroSection = styled('section')({
   backgroundColor: "#CCD5AE",
@@ -35,7 +36,7 @@ const HeroSection = () => {
         </Grid>
         <Grid item xs={12} lg={4}>
           <CenteredContainer>
-            <img src="https://clipart-library.com/images_k/transparent-png-online/transparent-png-online-7.png" alt="Product images" style={{ maxWidth: '100%' }} />
+            <img src={logo} alt="Product images" style={{ maxWidth: '100%' }} />
           </CenteredContainer>
         </Grid>
       </Grid>

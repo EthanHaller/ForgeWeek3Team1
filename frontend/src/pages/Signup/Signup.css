@@ -1,3 +1,58 @@
-label {
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", "sans-serif";
+}
+
+body {
+  background-color: #fefae0;
+}
+
+.container-signup {
+  width: 80%;
+  max-width: 400px;
+  margin: auto;
+  background-color: #ccd5ae;
+  padding: 30px;
+  margin-top: 50px;
+  border-radius: 10px;
+  border: 2px solid black;
+}
+
+.container-signup label, .container-signup input, .container-signup button {
   display: block;
+  margin: auto;
+  text-align: center;
+}
+
+.container-signup h1, .container button {
+  margin-bottom: 30px;
+}
+
+.container-signup label {
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.container-signup input {
+  margin-top: 5px;
+  width: 100%;
+}
+
+.container-signup button {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #fefae0;
+  transition: all 0.55s ease;
+  margin-bottom: 30px;
+}
+
+
+.container-signup button:hover {
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
 }

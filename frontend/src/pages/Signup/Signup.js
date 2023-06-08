@@ -34,18 +34,16 @@ export default function Signup() {
 
   return (
     <React.Fragment>
-      <div>
+      <div className='container-signup'>
         <h1>Sign Up</h1>
-        {error}
+        <h4>{error}</h4>
         <form onSubmit={handleSubmit}>
           <label>Email <input ref={emailRef} id="email" type='email' /></label>
           <label>Password <input ref={passwordRef} id="password" type='password' /></label>
           <label>Confirm Password <input ref={passwordConfirmRef} id="password-confirm" type='password' /></label>
           <button disabled={loading} type='submit'>Sign Up</button>
         </form>
-      </div>
-      <div>
-        <h2>Already have an account? <Link to="/login">Log In</Link></h2>
+        <h4>Already have an account? <Link to="/login">Log In</Link></h4>
       </div>
     </React.Fragment>
   )

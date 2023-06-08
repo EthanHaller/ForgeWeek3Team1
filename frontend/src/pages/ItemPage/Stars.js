@@ -5,7 +5,6 @@ import './ItemPage.css'
 import { useState, useEffect } from 'react';
 
 export default function Stars(number) {
-    console.log(number)
     const [fullStars, setFullStars] = useState(0)
     const [halfStars, setHalfStars] = useState(0)
     const [emptyStars, setEmptyStars] = useState(0)

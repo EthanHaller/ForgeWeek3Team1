@@ -42,21 +42,47 @@ router.put("/get-item", async (req, res) => {
     const result = await fetch('https://dummyjson.com/products/' + req.body.id)
         .then(result => result.json())
     switch (result.category) {
-        case 'smartphones' || 'laptops':
+        case 'smartphones':
             result.colors = ['silver', 'black', 'navy']
             break;
-        case 'tops' || 'womens-dresses' || 'mens-shirts':
+        case 'laptops':
+            result.colors = ['silver', 'black', 'navy']
+            break;
+        case 'tops':
             result.colors = ['red', 'blue', 'green', 'purple', 'black', 'white']
             result.sizes = ['XS', 'small', 'medium', 'large', 'XL', '2XL']
             break;
-        case 'home-decoration' || 'furniture':
+        case 'womens-dresses':
+            result.colors = ['red', 'blue', 'green', 'purple', 'black', 'white']
+            result.sizes = ['XS', 'small', 'medium', 'large', 'XL', '2XL']
+            break;
+        case 'mens-shirts':
+            result.colors = ['red', 'blue', 'green', 'purple', 'black', 'white']
+            result.sizes = ['XS', 'small', 'medium', 'large', 'XL', '2XL']
+            break;
+        case 'home-decoration':
             result.colors = ['gray', 'black', 'white', 'brown']
             break;
-        case 'womens-shoes' || 'mens-shoes':
-            result.colors = ['white', 'black', 'mixed']
+        case 'furniture':
+            result.colors = ['gray', 'black', 'white', 'brown']
+            break;
+        case 'womens-shoes':
+            result.colors = ['white', 'black']
             result.sizes = ['7', '8', '9', '10', '11', '12', '13']
             break;
-        case 'womens-watches' || 'mens-watches' || 'womens-jewellery':
+        case 'mens-shoes':
+            result.colors = ['white', 'black']
+            result.sizes = ['7', '8', '9', '10', '11', '12', '13']
+            break;
+        case 'womens-watches':
+            result.colors = ['gold', 'silver']
+            result.sizes = ['small', 'medium', 'large']
+            break;
+        case 'mens-watches':
+            result.colors = ['gold', 'silver']
+            result.sizes = ['small', 'medium', 'large']
+            break;
+        case 'womens-jewellery':
             result.colors = ['gold', 'silver']
             result.sizes = ['small', 'medium', 'large']
             break;

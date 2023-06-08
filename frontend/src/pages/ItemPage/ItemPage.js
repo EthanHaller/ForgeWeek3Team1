@@ -1,7 +1,7 @@
 import "./ItemPage.css"
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Button, Divider, TextField, MenuItem, Box } from "@mui/material";
+import { Button, Divider, TextField, MenuItem, Box, Card, CardContent, CardMedia, CardActionArea, Typography } from "@mui/material";
 import Stars from "./Stars";
 
 export default function ItemPage() {
@@ -31,18 +31,35 @@ export default function ItemPage() {
             })
     }
 
+    async function getOtherItems() {
+        await fetch("http://localhost:9000/products/get-products", {
+            method: "put",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ category: "category/" + category })
+        })
+            .then((response) => response.json())
+            .then((data) => setOtherItems(data))
+    }
+
     useEffect(() => {
         getItem();
+        getOtherItems();
 
-    }, [])
+    }, [id])
 
     useEffect(() => {
         if (thisItem)
             if (thisItem.item.colors) {
+                console.log("i work")
                 setColor(thisItem.item.colors[0])
             }
-
     }, [thisItem])
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [id])
 
     function handleQuantity(e) {
         setQuantity(e.target.value);
@@ -85,7 +102,7 @@ export default function ItemPage() {
                             <div className="halves" style={{ marginLeft: "5%", flexDirection: "column" }}>
                                 <h2 style={{ textAlign: "left", marginTop: "0%" }}>{thisItem.item.title}</h2>
                                 <h3 style={{ textAlign: "left", marginTop: "0%", display: "flex" }}>{thisItem.item.rating} {<Stars number={thisItem.item.rating} />}</h3>
-                                <Divider sx={{ width: "90%" }} />
+                                <Divider sx={{ width: "90%", backgroundColor: "gray" }} />
                                 <h3 style={{ color: "red", textAlign: "left", marginTop: "0%", height: "min-content" }}
                                 >
                                     -25% <h3 style={{ color: "black", textAlign: "left", marginTop: "0%" }}>
@@ -151,7 +168,39 @@ export default function ItemPage() {
                             </div>
                         </div>
                     </div>
+                    {otherItems.results &&
+                        <div style={{ width: "66%", margin: "auto", marginTop: "5%" }}>
+                            <Divider sx={{ backgroundColor: "gray" }} />
+                            <h2>You Might Like:</h2>
+                            <div className="otherItems">
+                                {otherItems.results.map((element) =>
+                                    element.id !== thisItem.item.id &&
+                                    <Card className='otherItemsCards' component={Link} to={"/products/" + element.category + "/" + element.id}>
+                                        <CardActionArea>
+                                            <CardMedia
+                                                className='cardPic'
+                                                sx={{ objectFit: "contain" }}
+                                                component="img"
+                                                image={element.thumbnail}
+                                                alt="picture of product"
+                                                height="300"
+                                            />
+                                            <CardContent >
+                                                <Typography gutterBottom variant="h5" component="div">
+                                                    {element.title}
+                                                </Typography>
+                                                <Typography variant="body2" color="error" >
+                                                    ${element.price}  <s style={{ color: "gray" }}>${Math.round(element.price * 1.25)}</s>
+                                                </Typography>
+                                            </CardContent>
+                                        </CardActionArea>
+                                    </Card >
+
+                                )}
+                            </div>
+                        </div>}
                 </div>}
+
         </>
     )
 }

@@ -36,3 +36,14 @@
     opacity: 50%;
     cursor: pointer;
 }
+
+.otherItemsCards {
+    max-height: 500px;
+    max-width: 300px;
+    min-width: 200px;
+    margin-left: 3%;
+}
+
+.otherItems {
+    display: flex;
+}

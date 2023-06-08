@@ -25,21 +25,28 @@ function Cart() {
 	const [recItems, setRecItems] = useState([]);
 	const [removeItemId, setRemoveItemId] = useState(null);
 	const [confirmationOpen, setConfirmationOpen] = useState(false);
-	//const [cookies, setCookie, removeCookie] = useCookies(["cart"]);
+	const [cookies, setCookie, removeCookie] = useCookies(["cart"]);
 
 	const { testProducts, setTestProducts } = useContext(CartContext);
-	//const [testProducts, setTestProducts] = useState([1, 2, 3, 4])
 
-	//i just commented this out but it doesn't seem to work for me?
-	/*
-	useEffect(() => {
-		if (cookies.cart) {
-			setCart(JSON.parse(cookies.cart));
-		}
-	}, []);
-	*/
 
 	const [totalPrice, setTotalPrice] = useState(0);
+
+	useEffect(() => {
+		if (cookies.cart) {
+			// Fetch cart from cookies if it exists
+			setCart(cookies.cart);
+			setTestProducts(cookies.cart);
+		} else {
+			setCookie("cart", []);
+		}
+	}, [cookies.cart]);
+
+	useEffect(() => {
+		// Update the cart cookie whenever the cart changes
+		setCookie("cart", testProducts);
+	}, [testProducts]);
+	
 
 	useEffect(() => {
 		// Calculate total price whenever cartItems change
@@ -48,7 +55,7 @@ function Cart() {
 	}, [cartItems, testProducts]);
 
 	useEffect(() => {
-		//setCookie("cart", JSON.stringify(cart), { path: "/" });
+		
 		fetchItems();
 		console.log(testProducts);
 
@@ -205,6 +212,7 @@ function Cart() {
 						Recommended Items
 					</Typography>
 
+
 					<Container style={{ width: "75%", margin: "0 auto" }}>
 						<Box display="flex" flexDirection="column" alignItems="center">
 							{recItems.map((item2, index) => (
@@ -244,6 +252,7 @@ function Cart() {
 				</div>
 			)}
 
+	
 			<Dialog
 				open={confirmationOpen}
 				onClose={handleCloseConfirmation}

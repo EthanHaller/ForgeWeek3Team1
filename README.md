@@ -59,7 +59,7 @@ Please follow the steps below to install and run the project:
 
 This project was successfully implemented thanks to the commitment and dedication of:
 
-- Nolan Hill
+- Nolan Hill [GitHub](https://github.com/NolanReedHill)
 - Ethan Haller
 - Marina Lin
 - Alexander Talreja

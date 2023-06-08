@@ -6,10 +6,14 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 import Search from "./Search"
 import CategoriesDrawer from "./CategoriesDrawer"
 import AccountCircleIcon from "@mui/icons-material/AccountCircle"
+import LoginIcon from "@mui/icons-material/Login"
+import LogoutIcon from "@mui/icons-material/Logout"
+import { useAuth } from "../../context/AuthContext"
 
 function Navbar() {
 	const [isMobile, setIsMobile] = useState(false)
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+	const { currentUser } = useAuth()
 
 	const toggleDrawer = () => {
 		setIsDrawerOpen(!isDrawerOpen)
@@ -83,9 +87,15 @@ function Navbar() {
 							/>
 						</IconButton>
 						<IconButton component={Link} to="/dashboard">
-							<AccountCircleIcon
-								fontSize={isMobile ? "medium" : "large"}
-							/>
+							{currentUser ? (
+								<LogoutIcon
+									fontSize={isMobile ? "medium" : "large"}
+								/>
+							) : (
+								<LoginIcon
+									fontSize={isMobile ? "medium" : "large"}
+								/>
+							)}
 						</IconButton>
 					</Box>
 					<CategoriesDrawer

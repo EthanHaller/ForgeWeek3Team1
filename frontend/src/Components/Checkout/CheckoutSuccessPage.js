@@ -17,7 +17,10 @@ function CheckoutSuccessPage() {
         axios.get(`http://localhost:9000/checkout/order/success?session_id=${sessionID}`, {
             query: sessionID
         })
-        .then(res => setName(res.data.results))
+        .then(res => {
+            setName(res.data.results)
+            console.log(res.data.lineItems)
+        })
     }
 
     return (

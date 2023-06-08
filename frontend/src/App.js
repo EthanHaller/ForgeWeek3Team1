@@ -10,6 +10,11 @@ import { useState } from "react";
 import Cart from "./Components/Cart/Cart";
 import CartContext from "./Components/Cart/CartContext";
 import CheckoutSuccessPage from "./Components/Checkout/CheckoutSuccessPage"
+import Signup from "./pages/Signup/Signup"
+import { AuthProvider } from "./context/AuthContext"
+import Login from "./pages/Login/Login"
+import Dashboard from "./pages/Dashboard/Dashboard"
+import PrivateRoute from "./PrivateRoute"
 
 function App() {
 	const [testProducts, setTestProducts] = useState([11, 23]);
@@ -19,12 +24,17 @@ function App() {
 			<ThemeProvider theme={theme}>
 				<BrowserRouter>
 					<Navbar />
+					<AuthProvider>
 					<Routes>
 						<Route path="/" element={<HomePage />} />
 						<Route path="/products/:category" element={<SearchResultsPage />} />
 						<Route path="/cart" element={<Cart />} />
 						<Route path='/order/success' element={<CheckoutSuccessPage />} />
+						<Route path="/signup" element={<Signup />} />
+						<Route path="/login" element={<Login />} />
+						<Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
 				</Routes>
+				</AuthProvider>
 				</BrowserRouter>
 			</ThemeProvider>
 		</CartContext.Provider>

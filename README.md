@@ -1,8 +1,8 @@
-# Project Name
+# EasyBuy
 
 ## Project Description
 
-This is an online store, built with React and Express, showcasing a selection of products. Users can view the available products, add them to their cart, and modify their cart as needed. The product data is pulled from the Dummy Products API. This application also offers extended functionality of suggesting similar products based on the contents of the user's cart and the item they are currently viewing. The cart state is managed using browser cookies.
+EasyBuy is an online store, built with React and Express, showcasing a selection of products. Users can view the available products, add them to their cart, and modify their cart as needed. The product data is pulled from the Dummy Products API. This application also offers extended functionality of suggesting similar products based on the contents of the user's cart and the item they are currently viewing. The cart state is managed using browser cookies.
 
 This project is hosted on Netlify and adheres to good design principles. The codebase is well-documented and features a public-facing API that provides endpoints for retrieving the list of available products and the details of specific items.
 

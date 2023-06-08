@@ -32,22 +32,26 @@ export default function ItemPage() {
     }
 
     async function getOtherItems() {
-        await fetch("http://localhost:9000/products/get-products", {
-            method: "put",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ category: "category/" + category })
-        })
-            .then((response) => response.json())
-            .then((data) => setOtherItems(data))
+        if (thisItem) {
+            await fetch("http://localhost:9000/products/get-products", {
+                method: "put",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ category: "category/" + thisItem.item.category })
+            })
+                .then((response) => response.json())
+                .then((data) => setOtherItems(data))
+        }
     }
 
     useEffect(() => {
         getItem();
-        getOtherItems();
-
     }, [id])
+
+    useEffect(() => {
+        getOtherItems()
+    }, [thisItem])
 
     useEffect(() => {
         if (thisItem)
@@ -185,6 +189,7 @@ export default function ItemPage() {
                                     <Button variant="contained"
                                         sx={{ marginTop: "5%", borderRadius: "100px", width: "90%", marginLeft: "auto", marginRight: "auto" }}
                                     >Add to Cart</Button>
+                                    <h6 style={{ textAlign: "left", marginLeft: "5%", marginTop: "3%" }}>Ships from EasyBuy.com</h6>
                                     <h6 style={{ textAlign: "left", marginLeft: "5%" }}>Sold by {thisItem.item.brand}</h6>
                                 </div>
                             </div>
@@ -197,7 +202,7 @@ export default function ItemPage() {
                             <div className="otherItems">
                                 {otherItems.results.map((element) =>
                                     element.id !== thisItem.item.id &&
-                                    <Card className='otherItemsCards' component={Link} to={"/products/" + element.category + "/" + element.id}>
+                                    <Card className='otherItemsCards' component={Link} to={"/products/" + element.category + "/" + element.id} >
                                         <CardActionArea>
                                             <CardMedia
                                                 className='cardPic'

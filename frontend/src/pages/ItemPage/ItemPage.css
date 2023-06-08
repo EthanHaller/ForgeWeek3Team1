@@ -20,10 +20,13 @@
     .imageArea {
         width: 75%;
         border: groove;
+        max-height: 800px;
+        overflow: hidden;
     }
 
     .smallPic {
         width: 50%;
+        max-height: 150px;
         margin-top: none;
         margin-left: auto;
         margin-bottom: 2%;
@@ -44,11 +47,12 @@
         max-height: 500px;
         max-width: 300px;
         min-width: 200px;
-        margin-left: 3%;
+        margin-top: 2%;
     }
 
     .otherItems {
         display: flex;
+        justify-content: space-evenly;
     }
 
     .mobileQuarter {
@@ -69,8 +73,6 @@
     }
 
     .otherItemsCards {
-        margin-left: 5%;
-        height: auto;
         max-height: 150px;
     }
 
@@ -97,4 +99,5 @@
     .mobileTitle {
         margin-left: 5%;
     }
+
 }

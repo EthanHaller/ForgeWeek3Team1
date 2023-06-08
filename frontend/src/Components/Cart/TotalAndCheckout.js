@@ -16,33 +16,32 @@ import CloseIcon from "@mui/icons-material/Close"
 import { useAuth } from "../../context/AuthContext"
 import { Link } from "react-router-dom"
 
-function TotalAndCheckout({ price }) {
+function TotalAndCheckout({ cartItems, price }) {
 	const { testProducts, setTestProducts } = useContext(CartContext)
-	const [cartItems, setCartItems] = useState([])
+	// const [cartItems, setCartItems] = useState([])
 	const [showCheckoutDialog, setShowCheckoutDialog] = useState(false)
 	const { currentUser } = useAuth()
 	// console.log("current user: ",currentUser)
 
-	useEffect(() => {
-		fetchItems()
-	}, [testProducts])
+	// useEffect(() => {
+	// 	fetchItems()
+	// }, [testProducts])
 
-	const fetchItems = async () => {
-		const items = []
-		for (const productId of testProducts) {
-			const response = await fetch(
-				`https://dummyjson.com/products/${productId}`
-			)
-			const data = await response.json()
-			items.push(data)
-		}
+	// const fetchItems = async () => {
+	// 	const items = []
+	// 	for (const productId of testProducts) {
+	// 		const response = await fetch(
+	// 			`https://dummyjson.com/products/${productId}`
+	// 		)
+	// 		const data = await response.json()
+	// 		items.push(data)
+	// 	}
 
-		setCartItems(items)
-	}
+	// 	setCartItems(items)
+	// }
 
 	const attemptCheckout = (e) => {
 		e.preventDefault()
-		fetchItems()
 
 		if(currentUser) handleCheckout()
 		else setShowCheckoutDialog(true)

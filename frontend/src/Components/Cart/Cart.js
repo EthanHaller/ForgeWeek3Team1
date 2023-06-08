@@ -89,15 +89,20 @@ function Cart() {
 		fetchRecommendedItems(mostFrequentCategory)
 	}
 	const fetchRecommendedItems = async (categoryName) => {
-		const response = await axios.put(
-			"http://localhost:9000/products/get-products",
-			{
-				category: categoryName,
-			}
-		)
-		const items = response.data.results.filter((item) => {
-			// Check if the item title is already in the cartItems
-			return !cartItems.some((cartItem) => cartItem.title === item.title)
+		let items;
+		await fetch("http://localhost:9000/products/get-products", {
+			method: "put",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({ category: "category/" + categoryName })
+		})
+		.then(res => res.json())
+		.then(data => {
+			items = data.results.filter((item) => {
+				// Check if the item title is already in the cartItems
+				return !cartItems.some((cartItem) => cartItem.title === item.title)
+			})
 		})
 
 		setRecItems(items)

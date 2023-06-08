@@ -16,7 +16,6 @@ function Search({ isMobile }) {
 	const handleSearch = (e) => {
 		e.preventDefault()
 		if (searchValue === "") return
-		console.log("Searching for " + searchValue)
 		toggleSearchDrawer()
 		navigate(`/products/q=${searchValue}`)
 	}

@@ -5,6 +5,7 @@ import MenuIcon from "@mui/icons-material/Menu"
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 import Search from "./Search"
 import CategoriesDrawer from "./CategoriesDrawer"
+import AccountCircleIcon from "@mui/icons-material/AccountCircle"
 
 function Navbar() {
 	const [isMobile, setIsMobile] = useState(false)
@@ -78,6 +79,11 @@ function Navbar() {
 							to="/cart"
 						>
 							<ShoppingCartIcon
+								fontSize={isMobile ? "medium" : "large"}
+							/>
+						</IconButton>
+						<IconButton component={Link} to="/dashboard">
+							<AccountCircleIcon
 								fontSize={isMobile ? "medium" : "large"}
 							/>
 						</IconButton>

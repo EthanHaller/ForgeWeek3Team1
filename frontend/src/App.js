@@ -10,6 +10,7 @@ import { useState } from "react";
 import Cart from "./Components/Cart/Cart";
 import CartContext from "./Components/Cart/CartContext";
 import CheckoutSuccessPage from "./Components/Checkout/CheckoutSuccessPage"
+import ItemPage from "./pages/ItemPage/ItemPage"
 import Signup from "./pages/Signup/Signup"
 import { AuthProvider } from "./context/AuthContext"
 import Login from "./pages/Login/Login"
@@ -25,16 +26,17 @@ function App() {
 				<BrowserRouter>
 					<Navbar />
 					<AuthProvider>
-					<Routes>
-						<Route path="/" element={<HomePage />} />
-						<Route path="/products/:category" element={<SearchResultsPage />} />
-						<Route path="/cart" element={<Cart />} />
-						<Route path='/order/success' element={<CheckoutSuccessPage />} />
-						<Route path="/signup" element={<Signup />} />
-						<Route path="/login" element={<Login />} />
-						<Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
-				</Routes>
-				</AuthProvider>
+						<Routes>
+							<Route path="/" element={<HomePage />} />
+							<Route path="/products/:category" element={<SearchResultsPage />} />
+							<Route path="/cart" element={<Cart />} />
+							<Route path='/order/success' element={<CheckoutSuccessPage />} />
+							<Route path="/products/:category/:id" element={<ItemPage />} />
+							<Route path="/signup" element={<Signup />} />
+							<Route path="/login" element={<Login />} />
+							<Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+						</Routes>
+					</AuthProvider>
 				</BrowserRouter>
 			</ThemeProvider>
 		</CartContext.Provider>

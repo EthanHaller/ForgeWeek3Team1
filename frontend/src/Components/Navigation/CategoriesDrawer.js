@@ -51,7 +51,7 @@ function CategoriesDrawer({ toggleDrawer, isDrawerOpen }) {
 							<ListItem key={category.raw} sx={{ py: "0" }}>
 								<ListItemButton
 									component={Link}
-									to={`/search-results/${category.raw}`}
+									to={`/products/${category.raw}`}
 								>
 									<ListItemText
 										primary={category.formatted}

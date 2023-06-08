@@ -77,7 +77,7 @@ export default function ItemPage() {
             {thisItem &&
                 <div style={{ display: "flex", flexDirection: "column" }}>
                     <Button style={{ marginTop: "3%", marginLeft: "13.5%", width: "fit-content", color: "gray", textTransform: "none" }}
-                        component={Link} to={"/products/" + category}>{"< Back to Products"}</Button>
+                        component={Link} to={"/products/" + category} className="backButton">{"< Back to Products"}</Button>
                     <div className="itemStructure">
                         <div className="halves">
                             <div className="quarter">
@@ -102,25 +102,26 @@ export default function ItemPage() {
                                 <h3 style={{ textAlign: "left", marginTop: "0%", display: "flex" }}>{thisItem.item.rating} {<Stars number={thisItem.item.rating} />}</h3>
                             </div>
                             <div className="imageArea">
-                                <img src={currentBicPic} style={{ width: "100%" }} />
+                                <img src={currentBicPic} className="bigPic" />
+                                <div className="mobileQuarter">
+                                    <img src={thisItem.item.thumbnail} className="smallPic" onClick={() => {
+                                        setCurrentBigPic(thisItem.item.thumbnail);
+                                    }}
+                                        style={{
+                                            boxShadow: currentBicPic === thisItem.item.thumbnail ? "0 0 5px 8px #99a98F" : "none",
+                                            border: currentBicPic === thisItem.item.thumbnail ? "none" : "groove"
+                                        }} />
+                                    {thisItem.item.images.map((element) =>
+                                        element === thisItem.item.thumbnail ? <p1></p1> :
+                                            <img src={element} alt="Pictures of product" className="smallPic"
+                                                onClick={() => {
+                                                    setCurrentBigPic(element);
+                                                }}
+                                                style={{ boxShadow: currentBicPic === element ? "0 0 5px 8px #99a98F" : "none", border: currentBicPic === element ? "none" : "groove" }} />
+                                    )}
+                                </div>
                             </div>
-                            <div className="mobileQuarter">
-                                <img src={thisItem.item.thumbnail} className="smallPic" onClick={() => {
-                                    setCurrentBigPic(thisItem.item.thumbnail);
-                                }}
-                                    style={{
-                                        boxShadow: currentBicPic === thisItem.item.thumbnail ? "0 0 5px 8px #99a98F" : "none",
-                                        border: currentBicPic === thisItem.item.thumbnail ? "none" : "groove"
-                                    }} />
-                                {thisItem.item.images.map((element) =>
-                                    element === thisItem.item.thumbnail ? <p1></p1> :
-                                        <img src={element} alt="Pictures of product" className="smallPic"
-                                            onClick={() => {
-                                                setCurrentBigPic(element);
-                                            }}
-                                            style={{ boxShadow: currentBicPic === element ? "0 0 5px 8px #99a98F" : "none", border: currentBicPic === element ? "none" : "groove" }} />
-                                )}
-                            </div>
+
                         </div>
                         <div className="halves">
                             <div className="halves" style={{ marginLeft: "5%", flexDirection: "column" }}>
@@ -146,7 +147,7 @@ export default function ItemPage() {
                                                     sx={{
                                                         backgroundColor: element, height: "auto",
                                                         aspectRatio: "1", width: "10%", marginLeft: "3%",
-                                                        boxShadow: color === element ? "0 0 5px 5px #99a98F" : "none", border: color === element ? "none" : "groove"
+                                                        boxShadow: color === element ? "0 0 5px 5px #2e4a2b" : "none", border: color === element ? "none" : "groove"
                                                     }}
                                                     onClick={() => {
                                                         setColor(element);
@@ -226,8 +227,8 @@ export default function ItemPage() {
                                 )}
                             </div>
                         </div>}
-                </div>}
 
+                </div>}
         </>
     )
 }

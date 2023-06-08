@@ -87,7 +87,7 @@ const FeaturedProducts = () => {
                     component="img"
                     height="250"
                     image={itemTwo.item.thumbnail}
-                    alt="iPhone 14"
+                    alt="product 2"
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h4" component="div">

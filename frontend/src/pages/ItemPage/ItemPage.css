@@ -46,6 +46,11 @@
         cursor: pointer;
     }
 
+    .boxes {
+        margin-top: 3%;
+        margin-bottom: 3%;
+    }
+
     .otherItemsCards {
         max-height: 500px;
         max-width: 300px;
@@ -116,4 +121,8 @@
         margin-left: 3%;
     }
 
+    .boxes {
+        margin-top: 3%;
+        margin-bottom: 3%;
+    }
 }

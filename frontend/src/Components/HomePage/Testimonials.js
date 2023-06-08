@@ -1,6 +1,6 @@
 import React from 'react';
 import { styled } from "@mui/system";
-import { Typography } from "@mui/material";
+import { Divider } from "@mui/material";
 
 const StyledHeroSection = styled('section')({
   backgroundColor: "#FEFAE0",
@@ -64,6 +64,7 @@ const Testimonials = () => {
 
   return (
     <StyledHeroSection>
+      <Divider sx={{ marginBottom: "3%", backgroundColor: "gray" }} />
       <section className="testimonials">
         <TestimonialGrid>
           {testimonials.map((testimonial) => (

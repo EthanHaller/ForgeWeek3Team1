@@ -1,17 +1,10 @@
 import React, { useState, useEffect } from "react"
-<<<<<<< HEAD
-import { AppBar, Toolbar } from "@mui/material"
-import MobileNavbar from "./MobileNavbar"
-import DesktopNavbar from "./DesktopNavbar"
-import MenuIcon from '@mui/icons-material/Menu'
-=======
 import { AppBar, Toolbar, IconButton, Typography, Box } from "@mui/material"
 import { Link } from "react-router-dom"
 import MenuIcon from "@mui/icons-material/Menu"
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 import Search from "./Search"
 import CategoriesDrawer from "./CategoriesDrawer"
->>>>>>> 50e877f06115f2e72a5b5a7b7bbe8601ca4372fa
 
 function Navbar() {
 	const [isMobile, setIsMobile] = useState(false)

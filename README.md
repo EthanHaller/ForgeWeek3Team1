@@ -60,9 +60,9 @@ Please follow the steps below to install and run the project:
 This project was successfully implemented thanks to the commitment and dedication of:
 
 - Nolan Hill [GitHub](https://github.com/NolanReedHill)
-- Ethan Haller
-- Marina Lin
-- Alexander Talreja
-- Mohammed Alwosaibi
+- Ethan Haller [GitHub](https://github.com/EthanHaller)
+- Marina Lin [GitHub](https://github.com/Lamarina0612)
+- Alexander Talreja [GitHub](https://github.com/AlexTalreja)
+- Mohammed Alwosaibi [GitHub](https://github.com/hst6pw)
 
 We want to extend our gratitude to all contributors to this project. Your contributions have been pivotal to its success.

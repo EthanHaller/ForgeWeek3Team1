@@ -29,17 +29,15 @@ export default function Login() {
 
   return (
     <React.Fragment>
-      <div>
+      <div className='container-login'>
         <h1>Log In</h1>
-        {error}
+        <h4>{error}</h4>
         <form onSubmit={handleSubmit}>
           <label>Email <input ref={emailRef} id="email" type='email' /></label>
           <label>Password <input ref={passwordRef} id="password" type='password' /></label>
           <button disabled={loading} type='submit'>Log In</button>
         </form>
-      </div>
-      <div>
-        <h2>Need an account? <Link to="/signup">Sign Up</Link></h2>
+        <h4>Need an account? <Link to="/signup">Sign Up</Link></h4>
       </div>
     </React.Fragment>
   )

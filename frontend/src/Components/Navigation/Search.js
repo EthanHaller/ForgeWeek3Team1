@@ -1,13 +1,13 @@
 import { Box, Drawer, IconButton, TextField, Typography } from "@mui/material"
 import React, { useState } from "react"
-import { Navigate } from "react-router-dom"
+import { Navigate, useNavigate } from "react-router-dom"
 import SearchIcon from "@mui/icons-material/Search"
 import CloseIcon from "@mui/icons-material/Close"
 
 function Search({ isMobile }) {
 	const [searchValue, setSearchValue] = useState("")
 	const [isSearchDrawerOpen, setIsSearchDrawerOpen] = useState(false)
-	const [alreadySearched, setAlreadySearched] = useState(false)
+	const navigate = useNavigate()
 
 	const toggleSearchDrawer = () => {
 		setIsSearchDrawerOpen(!isSearchDrawerOpen)
@@ -16,21 +16,16 @@ function Search({ isMobile }) {
 	const handleSearch = (e) => {
 		e.preventDefault()
 		if (searchValue === "") return
-		console.log("Searching for " + searchValue)
-		setAlreadySearched(true)
+		toggleSearchDrawer()
+		navigate(`/products/q=${searchValue}`)
 	}
 
-	if (alreadySearched) return <Navigate to={`/products/q=${searchValue}`} />
 	return (
 		<>
 			<IconButton onClick={toggleSearchDrawer}>
 				<SearchIcon fontSize={isMobile ? "medium" : "large"} />
 			</IconButton>
-			<Drawer
-				anchor="right"
-				open={isSearchDrawerOpen}
-				onClick={toggleSearchDrawer}
-			>
+			<Drawer anchor="right" open={isSearchDrawerOpen}>
 				<Box sx={{ width: { xs: "90vw", sm: "400px" } }}>
 					<Box sx={{ display: "flex", justifyContent: "flex-end" }}>
 						<IconButton onClick={toggleSearchDrawer}>

@@ -17,7 +17,7 @@ const HeroSection = () => {
   return (
     <StyledHeroSection>
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>   
+        <Grid item xs={12} lg={8}>   
         <div style={{ marginTop: '2rem' }}>
             <Typography variant="h2" sx={{ fontSize: { xs: '2rem', sm: '3rem' } }} align="left" fontWeight="bold">
               Discover a wide range of products for all your needs.
@@ -32,7 +32,7 @@ const HeroSection = () => {
             </Button>
           </div>
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} lg={4}>
             <CenteredContainer>
                 <img src="https://clipart-library.com/images_k/transparent-png-online/transparent-png-online-7.png" alt="Product images" style={{ maxWidth: '100%' }}/>
             </CenteredContainer>

@@ -8,7 +8,10 @@ const StyledFeaturedProducts = styled('section')({
 
 const ProductCard = styled(Card)({
   width: '300px',
-  margin: '5rem',
+  marginLeft: '2rem',
+  marginRight: '2rem',
+  marginTop: '4rem',
+  marginBottom: '4rem'
 });
 
 const FeaturedProducts = () => {

@@ -21,6 +21,7 @@ function TotalAndCheckout({ price }) {
 	const [cartItems, setCartItems] = useState([])
 	const [showCheckoutDialog, setShowCheckoutDialog] = useState(false)
 	const { currentUser } = useAuth()
+	// console.log("current user: ",currentUser)
 
 	useEffect(() => {
 		fetchItems()

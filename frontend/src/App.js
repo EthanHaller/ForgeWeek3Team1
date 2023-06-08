@@ -1,14 +1,14 @@
-import React from "react";
-import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navbar from "./Components/Navigation/Navbar";
-import SearchResultsPage from "./pages/searchResults/searchResultsPage";
-import { ThemeProvider } from "@mui/material/styles";
-import theme from "./Theme";
-import HomePage from "./Components/HomePage/HomePage";
-import { useState } from "react";
-import Cart from "./Components/Cart/Cart";
-import CartContext from "./Components/Cart/CartContext";
+import React from "react"
+import "./App.css"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Navbar from "./Components/Navigation/Navbar"
+import SearchResultsPage from "./pages/searchResults/searchResultsPage"
+import { ThemeProvider } from "@mui/material/styles"
+import theme from "./Theme"
+import HomePage from "./Components/HomePage/HomePage"
+import { useState } from "react"
+import Cart from "./Components/Cart/Cart"
+import CartContext from "./Components/Cart/CartContext"
 import CheckoutSuccessPage from "./Components/Checkout/CheckoutSuccessPage"
 import Signup from "./pages/Signup/Signup"
 import { AuthProvider } from "./context/AuthContext"
@@ -17,28 +17,41 @@ import Dashboard from "./pages/Dashboard/Dashboard"
 import PrivateRoute from "./PrivateRoute"
 
 function App() {
-	const [testProducts, setTestProducts] = useState([11, 23]);
+	const [testProducts, setTestProducts] = useState([11, 23])
 
 	return (
-		<CartContext.Provider value={{ testProducts, setTestProducts }}>
-			<ThemeProvider theme={theme}>
-				<BrowserRouter>
-					<Navbar />
-					<AuthProvider>
-					<Routes>
-						<Route path="/" element={<HomePage />} />
-						<Route path="/products/:category" element={<SearchResultsPage />} />
-						<Route path="/cart" element={<Cart />} />
-						<Route path='/order/success' element={<CheckoutSuccessPage />} />
-						<Route path="/signup" element={<Signup />} />
-						<Route path="/login" element={<Login />} />
-						<Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
-				</Routes>
-				</AuthProvider>
-				</BrowserRouter>
-			</ThemeProvider>
-		</CartContext.Provider>
-	);
+		<AuthProvider>
+			<CartContext.Provider value={{ testProducts, setTestProducts }}>
+				<ThemeProvider theme={theme}>
+					<BrowserRouter>
+						<Navbar />
+						<Routes>
+							<Route path="/" element={<HomePage />} />
+							<Route
+								path="/products/:category"
+								element={<SearchResultsPage />}
+							/>
+							<Route path="/cart" element={<Cart />} />
+							<Route
+								path="/order/success"
+								element={<CheckoutSuccessPage />}
+							/>
+							<Route path="/signup" element={<Signup />} />
+							<Route path="/login" element={<Login />} />
+							<Route
+								path="/dashboard"
+								element={
+									<PrivateRoute>
+										<Dashboard />
+									</PrivateRoute>
+								}
+							/>
+						</Routes>
+					</BrowserRouter>
+				</ThemeProvider>
+			</CartContext.Provider>
+		</AuthProvider>
+	)
 }
 
-export default App;
+export default App

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import axios from "axios";
 import CartContext from "./CartContext";
 import IconButton from "@mui/material/IconButton";
 import Dialog from "@mui/material/Dialog";
@@ -25,20 +26,7 @@ function Cart() {
 	const [recItems, setRecItems] = useState([]);
 	const [removeItemId, setRemoveItemId] = useState(null);
 	const [confirmationOpen, setConfirmationOpen] = useState(false);
-	//const [cookies, setCookie, removeCookie] = useCookies(["cart"]);
-
 	const { testProducts, setTestProducts } = useContext(CartContext);
-	//const [testProducts, setTestProducts] = useState([1, 2, 3, 4])
-
-	//i just commented this out but it doesn't seem to work for me?
-	/*
-	useEffect(() => {
-		if (cookies.cart) {
-			setCart(JSON.parse(cookies.cart));
-		}
-	}, []);
-	*/
-
 	const [totalPrice, setTotalPrice] = useState(0);
 
 	useEffect(() => {
@@ -48,26 +36,15 @@ function Cart() {
 	}, [cartItems, testProducts]);
 
 	useEffect(() => {
-		//setCookie("cart", JSON.stringify(cart), { path: "/" });
 		fetchItems();
-		console.log(testProducts);
-
-		console.log("Recommended Items: ", recItems);
-
-		console.log(cart);
 	}, [cart, testProducts]);
 
 	const fetchItems = async () => {
 		const items = [];
-
-		for (const productId of testProducts) {
-			const response = await fetch(
-				`https://dummyjson.com/products/${productId}`
-			);
-			const data = await response.json();
-			items.push(data);
-		}
-
+		testProducts.forEach(productId => {
+			axios.get(`http://localhost:9000/products/get-product/${productId}`)
+			.then(res => items.push(res.data))
+		});
 		setCartItems(items);
 	};
 
@@ -101,11 +78,10 @@ function Cart() {
 	};
 
 	const fetchMore = async (categoryName) => {
-		const response = await fetch(
-			`https://dummyjson.com/products/category/${categoryName}`
-		);
-		const data = await response.json();
-		const items2 = data.products.filter((item) => {
+		const response = await axios.put('http://localhost:9000/products/get-products', {
+			category: categoryName
+		})
+		const items2 = response.data.results.filter((item) => {
 			// Check if the item title is already in the cartItems
 			return !cartItems.some((cartItem) => cartItem.title === item.title);
 		});
@@ -127,7 +103,6 @@ function Cart() {
 			(category) => categoryCounts[category] === maxCount
 		);
 
-		console.log("Most frequent category:", mostFrequentCategory);
 		fetchMore(mostFrequentCategory);
 	}, [cartItems, testProducts]);
 

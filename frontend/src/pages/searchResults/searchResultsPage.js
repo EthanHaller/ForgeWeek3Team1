@@ -20,9 +20,11 @@ export default function SearchResultsPage() {
     const [whichSort, setWhichSort] = useState("Featured");
     const [whichMobileSort, setWhichMobileSort] = useState("Featured");
 
+
+
     useEffect(() => {
         getProducts()
-    }, [])
+    }, [category])
     //fetching product list
     async function getProducts() {
         if (category === "all") {

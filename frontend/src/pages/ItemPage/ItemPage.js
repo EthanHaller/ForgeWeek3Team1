@@ -1,7 +1,7 @@
 import "./ItemPage.css"
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Button } from "@mui/material";
+import { Button, Divider, TextField } from "@mui/material";
 import Stars from "./Stars";
 
 export default function ItemPage() {
@@ -66,6 +66,7 @@ export default function ItemPage() {
                             <div className="halves" style={{ marginLeft: "5%", flexDirection: "column" }}>
                                 <h2 style={{ textAlign: "left", marginTop: "0%" }}>{thisItem.item.title}</h2>
                                 <h3 style={{ textAlign: "left", marginTop: "0%", display: "flex" }}>{thisItem.item.rating} {<Stars number={thisItem.item.rating} />}</h3>
+                                <Divider sx={{ width: "90%" }} />
                                 <h3 style={{ color: "red", textAlign: "left", marginTop: "0%", height: "min-content" }}
                                 >
                                     -25% <h3 style={{ color: "black", textAlign: "left", marginTop: "0%" }}>
@@ -79,7 +80,11 @@ export default function ItemPage() {
                             <div className="halves" style={{ marginTop: "0%" }}>
                                 <div className="halves" style={{ border: "groove", display: "flex", flexDirection: "column" }}>
                                     <h2 style={{ marginLeft: "5%", textAlign: "left" }}>${thisItem.item.price}</h2>
-                                    <h3 style={{ marginLeft: "5%", textAlign: "left", color: "#1b5e20", marginTop: "0%" }}>In Stock</h3>
+                                    {thisItem.item.stock > 9 ?
+                                        <h3 style={{ marginLeft: "5%", textAlign: "left", color: "#1b5e20", marginTop: "0%" }}>In Stock</h3> :
+                                        <h3 style={{ marginLeft: "5%", textAlign: "left", color: "red", marginTop: "0%" }}>Only {thisItem.item.stock} Left</h3>
+                                    }
+                                    <TextField select sx={{ width: "fit-content" }} size="small"></TextField>
                                 </div>
                             </div>
                         </div>

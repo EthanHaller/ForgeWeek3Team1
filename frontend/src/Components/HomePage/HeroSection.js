@@ -6,7 +6,7 @@ import logo from './logo.png';
 
 const StyledHeroSection = styled('section')({
   backgroundColor: "#CCD5AE",
-  padding: '4rem',
+  padding: '5rem',
 });
 
 const CenteredContainer = styled('div')({

@@ -26,16 +26,18 @@ function App() {
 				<BrowserRouter>
 					<Navbar />
 					<AuthProvider>
-						<Routes>
-							<Route path="/" element={<HomePage />} />
-							<Route path="/products/:category" element={<SearchResultsPage />} />
-							<Route path="/cart" element={<Cart />} />
-							<Route path='/order/success' element={<CheckoutSuccessPage />} />
-							<Route path="/products/:category/:id" element={<ItemPage />} />
-							<Route path="/signup" element={<Signup />} />
-							<Route path="/login" element={<Login />} />
-							<Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
-						</Routes>
+						<div style={{ paddingTop: '88px' }}>
+							<Routes>
+								<Route path="/" element={<HomePage />} />
+								<Route path="/products/:category" element={<SearchResultsPage />} />
+								<Route path="/cart" element={<Cart />} />
+								<Route path='/order/success' element={<CheckoutSuccessPage />} />
+								<Route path="/products/:category/:id" element={<ItemPage />} />
+								<Route path="/signup" element={<Signup />} />
+								<Route path="/login" element={<Login />} />
+								<Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+							</Routes>
+						</div>
 					</AuthProvider>
 				</BrowserRouter>
 			</ThemeProvider>

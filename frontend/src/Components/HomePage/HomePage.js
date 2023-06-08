@@ -6,7 +6,7 @@ import Testimonials from './Testimonials';
 const HomePage = () => {
     return (
       <div>
-        <HeroSection />
+          <HeroSection />
         <FeaturedProducts />
         <Testimonials />
       </div>

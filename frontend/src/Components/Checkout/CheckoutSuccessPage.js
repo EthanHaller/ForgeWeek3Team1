@@ -19,7 +19,9 @@ function CheckoutSuccessPage() {
         })
         .then(res => {
             setName(res.data.results)
-            console.log(res.data.lineItems)
+            axios.post('http://localhost:9000/addOrder',{
+                data: res.data.lineItems
+            })
         })
     }
 

@@ -25,22 +25,6 @@ router.post("/", async (req, res, next) => {
 	})
 
 	const session = await stripe.checkout.sessions.create({
-		/*
-		line_items: [
-			{
-				price_data: {
-                    currency: 'usd',
-                    product_data: {
-                        name: 'iPhone 9',
-                        description: 'An apple mobile which is nothing like apple',
-                        images: []
-                    },
-                    unit_amount: '54900'
-                },
-                quantity: 1
-			},
-		],
-        */
 		line_items: lineItems,
 		mode: "payment",
 		success_url:

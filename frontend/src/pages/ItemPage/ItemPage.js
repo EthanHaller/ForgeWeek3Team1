@@ -36,8 +36,6 @@ export default function ItemPage() {
 		setProdSize,
 	} = useContext(CartContext);
 
-	console.log("TEST PRODUCTS INITIAL", testProducts);
-
 	const params = useParams();
 	const id = params.id;
 
@@ -47,7 +45,6 @@ export default function ItemPage() {
 		const quantityToAdd = parseInt(quantity);
 
 		if (Array.isArray(testProducts)) {
-			console.log(prodColors);
 			setTestProducts((prevTestProducts) => [
 				...prevTestProducts,
 				...Array(quantityToAdd).fill(parseInt(id)),
@@ -64,7 +61,6 @@ export default function ItemPage() {
 			setTestProducts(Array(quantityToAdd).fill(parseInt(id)));
 			setProdColors(Array(quantityToAdd).fill(color || "default"));
 			setProdSize(Array(quantityToAdd).fill(size || "default"));
-			console.log(prodColors);
 		}
 		setShowMessage(true);
 	};

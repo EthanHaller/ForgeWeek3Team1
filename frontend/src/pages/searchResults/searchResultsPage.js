@@ -230,7 +230,7 @@ export default function SearchResultsPage() {
             <div className='structure'>
                 <div className='leftThird' />
 
-                <div className='leftThird'>
+                <div className='leftThird' style={{ height: (filteredProducts && filteredProducts.length === 0) ? "400px" : "auto" }}>
                     <h1 style={{ textAlign: "left" }}>Filter/Sort</h1>
                     <TextField select
                         id='sorter'

@@ -23,9 +23,9 @@ function TotalAndCheckout() {
 	const { currentUser } = useAuth()
 	// console.log("current user: ",currentUser)
 
-	// useEffect(() => {
-	// 	fetchItems()
-	// }, [testProducts])
+	useEffect(() => {
+		fetchItems()
+	}, [testProducts])
 
 	const fetchItems = async () => {
 		const items = []
@@ -40,7 +40,7 @@ function TotalAndCheckout() {
 	}
 	//const [cartItems, setCartItems] = useState([]);
 
-	const attemptCheckout = () => {
+	const attemptCheckout = async () => {
 		fetchItems()
 
 		if (currentUser) handleCheckout()
@@ -49,33 +49,23 @@ function TotalAndCheckout() {
 
 	const handleCheckout = () => {
 		setShowCheckoutDialog(false)
-		console.log("cart items", cartItems)
 
 		axios
 			.post("http://localhost:9000/checkout", { items: cartItems })
 			.then((res) => (window.location.href = res.data))
 	}
 
+	console.log(cartItems)
+
 	return (
 		<>
-			<Box
-				sx={{
-					width: "100%",
-					display: "flex",
-					justifyContent: "space-between",
-					mt: "25px",
-					mb: "20px",
-				}}
+			<Button
+				onClick={() => attemptCheckout()}
+				variant="contained"
+				sx={{ width: "calc(100px + 6vw)" }}
 			>
-				<Button
-					onClick={() => attemptCheckout()}
-					variant="contained"
-					sx={{ width: "calc(100px + 6vw)" }}
-				>
-					CHECK OUT
-				</Button>
-			</Box>
-			<Divider sx={{ mb: "80px" }} />
+				CHECK OUT
+			</Button>
 			<Dialog open={showCheckoutDialog} fullWidth maxWidth="sm">
 				<Box sx={{ display: "flex", justifyContent: "flex-end" }}>
 					<IconButton onClick={() => setShowCheckoutDialog(false)}>

@@ -50,7 +50,7 @@ function CheckoutSuccessPage() {
 				alt=""
 				style={{
 					width: "calc(200px + 1vw)",
-					paddingTop: "100px",
+					paddingTop: "25px",
 					paddingBottom: "50px",
 				}}
 			/>
@@ -60,10 +60,15 @@ function CheckoutSuccessPage() {
 			>
 				Thank You
 			</Typography>
-			<Typography
+			{name && <Typography
 				variant="body1"
-				sx={{ fontSize: "calc(24px + 1vw)" }}
-			>{currentUser ? (`${name}, your order has been confirmed! You can view this order on your account dashboard.`) : (`${name}, your order has been confirmed!`)}</Typography>
+				textAlign="center"
+				sx={{ fontSize: "calc(18px + 1vw)", mx: '10vw', mb: '50px' }}
+			>
+				{currentUser
+					? `${name}, your order has been confirmed! You can view this order on your account dashboard.`
+					: `${name}, your order has been confirmed!`}
+			</Typography>}
 		</Box>
 	)
 }

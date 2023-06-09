@@ -8,19 +8,19 @@ import {
 	Divider,
 	IconButton,
 	Typography,
-} from "@mui/material";
-import axios from "axios";
-import { useContext, useState, useEffect } from "react";
-import CartContext from "./CartContext";
-import CloseIcon from "@mui/icons-material/Close";
-import { useAuth } from "../../context/AuthContext";
-import { Link } from "react-router-dom";
+} from "@mui/material"
+import axios from "axios"
+import { useContext, useState, useEffect } from "react"
+import CartContext from "./CartContext"
+import CloseIcon from "@mui/icons-material/Close"
+import { useAuth } from "../../context/AuthContext"
+import { Link } from "react-router-dom"
 
 function TotalAndCheckout() {
-	const { testProducts, setTestProducts } = useContext(CartContext);
-	const [cartItems, setCartItems] = useState([]);
-	const [showCheckoutDialog, setShowCheckoutDialog] = useState(false);
-	const { currentUser } = useAuth();
+	const { testProducts, setTestProducts } = useContext(CartContext)
+	const [cartItems, setCartItems] = useState([])
+	const [showCheckoutDialog, setShowCheckoutDialog] = useState(false)
+	const { currentUser } = useAuth()
 	// console.log("current user: ",currentUser)
 
 	// useEffect(() => {
@@ -28,34 +28,33 @@ function TotalAndCheckout() {
 	// }, [testProducts])
 
 	const fetchItems = async () => {
-		const items = [];
+		const items = []
 		for (const productId of testProducts) {
 			const response = await fetch(
 				`https://dummyjson.com/products/${productId}`
-			);
-			const data = await response.json();
-			items.push(data);
+			)
+			const data = await response.json()
+			items.push(data)
 		}
-		setCartItems(items);
-	};
+		setCartItems(items)
+	}
 	//const [cartItems, setCartItems] = useState([]);
 
-	const attemptCheckout = (e) => {
-		fetchItems();
-		e.preventDefault();
+	const attemptCheckout = () => {
+		fetchItems()
 
-		if (currentUser) handleCheckout();
-		else setShowCheckoutDialog(true);
-	};
+		if (currentUser) handleCheckout()
+		else setShowCheckoutDialog(true)
+	}
 
-	const handleCheckout = (e) => {
-		setShowCheckoutDialog(false);
-		console.log("cart items", cartItems);
+	const handleCheckout = () => {
+		setShowCheckoutDialog(false)
+		console.log("cart items", cartItems)
 
 		axios
 			.post("http://localhost:9000/checkout", { items: cartItems })
-			.then((res) => (window.location.href = res.data));
-	};
+			.then((res) => (window.location.href = res.data))
+	}
 
 	return (
 		<>
@@ -69,7 +68,7 @@ function TotalAndCheckout() {
 				}}
 			>
 				<Button
-					onClick={attemptCheckout}
+					onClick={() => attemptCheckout()}
 					variant="contained"
 					sx={{ width: "calc(100px + 6vw)" }}
 				>
@@ -83,14 +82,22 @@ function TotalAndCheckout() {
 						<CloseIcon />
 					</IconButton>
 				</Box>
-				<Typography variant="h3" sx={{ fontSize: "calc(24px + 0.5vw)" }}>
+				<Typography
+					variant="h3"
+					sx={{ fontSize: "calc(24px + 0.5vw)" }}
+				>
 					You are not logged in
 				</Typography>
 				<Typography variant="body1" sx={{ p: "25px" }}>
-					Log in to add this order to your past orders, or continue as a guest.
+					Log in to add this order to your past orders, or continue as
+					a guest.
 				</Typography>
 				<Box
-					sx={{ display: "flex", justifyContent: "space-around", mb: "25px" }}
+					sx={{
+						display: "flex",
+						justifyContent: "space-around",
+						mb: "25px",
+					}}
 				>
 					<Button
 						component={Link}
@@ -110,7 +117,7 @@ function TotalAndCheckout() {
 				</Box>
 			</Dialog>
 		</>
-	);
+	)
 }
 
-export default TotalAndCheckout;
+export default TotalAndCheckout

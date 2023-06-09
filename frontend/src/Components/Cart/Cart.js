@@ -6,9 +6,12 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import "./Cart.css"
 import {
 	Card,
 	CardContent,
+	CardActionArea,
+	CardMedia,
 	Typography,
 	Box,
 	Container,
@@ -21,6 +24,7 @@ import IndeterminateCheckBoxOutlinedIcon from "@mui/icons-material/Indeterminate
 import { useCookies } from "react-cookie";
 import TotalAndCheckout from "./TotalAndCheckout";
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
+import { Link } from "react-router-dom";
 
 function Cart() {
 	const [cart, setCart] = useState([1, 2, 4]);
@@ -253,7 +257,7 @@ function Cart() {
 			</Box>
 
 			{cartItems.length === 0 ? (
-				<div>
+				<div style={{ height: "400px" }}>
 					<Typography variant="h5" align="center" paddingTop={"50px"}>
 						Cart is currently empty.
 					</Typography>
@@ -382,42 +386,43 @@ function Cart() {
 						Recommended Items
 					</Typography>
 
-					<Container style={{ width: "75%", margin: "0 auto" }}>
-						<Box display="flex" flexDirection="column" alignItems="center">
-							{recItems.map((item2, index) => (
-								<Card
-									key={`${item2.id}-${index}`}
-									style={{
-										marginBottom: "1rem",
-										width: "100%",
-									}}
-								>
+					<div className="recommended">
+						{recItems.map((element, index) => (
+							<Card
+								className="recItems"
+								key={`${element.id}-${index}`}
+								sx={{ marginLeft: "1%" }}
+								component={Link}
+								to={"/products/" + element.category + "/" + element.id}
+							>
+								<CardActionArea>
+									<CardMedia
+										className="cardPic"
+										sx={{ objectFit: "contain" }}
+										component="img"
+										image={element.thumbnail}
+										alt="picture of product"
+										height="300"
+									/>
 									<CardContent>
-										<Typography variant="h6">{item2.title}</Typography>
-										<Typography variant="body2">${item2.price}.00</Typography>
-										<Typography variant="body2">{item2.description}</Typography>
-										<Box display="flex" justifyContent="flex-end">
-											<Box display="flex" justifyContent="flex-end">
-												<IconButton
-													style={{
-														color: "white",
-														backgroundColor: "green",
-													}}
-													sx={{
-														borderRadius: "4px",
-													}}
-													size="small"
-													onClick={() => addToCart(item2.id)}
-												>
-													<AddShoppingCartIcon />
-												</IconButton>
-											</Box>
-										</Box>
+										<Typography
+											gutterBottom
+											variant="h5"
+											component="div"
+										>
+											{element.title}
+										</Typography>
+										<Typography variant="body2" color="error">
+											${element.price}{" "}
+											<s style={{ color: "gray" }}>
+												${Math.round(element.price * 1.25)}
+											</s>
+										</Typography>
 									</CardContent>
-								</Card>
-							))}
-						</Box>
-					</Container>
+								</CardActionArea>
+							</Card>
+						))}
+					</div>
 				</div>
 			)}
 

@@ -23,7 +23,8 @@
     .imageArea {
         width: 75%;
         border: groove;
-        max-height: 800px;
+        height: fit-content;
+        max-height: 700px;
         overflow: hidden;
     }
 

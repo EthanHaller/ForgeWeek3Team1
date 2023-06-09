@@ -1,0 +1,27 @@
+@media screen and (max-width: 1000px) {
+    .recommended {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .recItems {
+        margin-top: 3%;
+
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .recommended {
+        display: flex;
+        justify-content: space-evenly;
+        width: 75%;
+        margin: auto;
+        margin-top: 1%;
+    }
+
+    .recItems {
+        max-height: 500px;
+        max-width: 300px;
+        min-width: 200px;
+    }
+}

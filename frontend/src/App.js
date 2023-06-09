@@ -16,6 +16,7 @@ import { AuthProvider } from "./context/AuthContext";
 import Login from "./pages/Login/Login";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import PrivateRoute from "./PrivateRoute";
+import Footer from "./Components/Footer/Footer";
 
 function App() {
 	const [testProducts, setTestProducts] = useState([]);
@@ -63,6 +64,7 @@ function App() {
 								/>
 							</Routes>
 						</div>
+						<Footer />
 					</BrowserRouter>
 				</ThemeProvider>
 			</CartContext.Provider>

@@ -3,7 +3,7 @@ import axios from "axios";
 import { useContext, useState, useEffect } from "react";
 import CartContext from "./CartContext";
 
-function TotalAndCheckout({ price }) {
+function TotalAndCheckout() {
 	const { testProducts, setTestProducts } = useContext(CartContext);
 	const [cartItems, setCartItems] = useState([]);
 
@@ -36,9 +36,14 @@ function TotalAndCheckout({ price }) {
 	return (
 		<>
 			<Box
-				sx={{ width: "100%", display: "flex", justifyContent: "space-between", mt: '25px', mb: '20px' }}
+				sx={{
+					width: "100%",
+					display: "flex",
+					justifyContent: "space-between",
+					mt: "25px",
+					mb: "20px",
+				}}
 			>
-                <Typography variant='h3'>{`Total: $${price}`}</Typography>
 				<Button
 					onClick={handleCheckout}
 					variant="contained"
@@ -47,7 +52,7 @@ function TotalAndCheckout({ price }) {
 					CHECK OUT
 				</Button>
 			</Box>
-            <Divider sx={{ mb: '80px'}}/>
+			<Divider sx={{ mb: "80px" }} />
 		</>
 	);
 }

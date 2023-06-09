@@ -27,7 +27,12 @@ function CategoriesDrawer({ toggleDrawer, isDrawerOpen }) {
 	}
 
 	return (
-		<Drawer open={isDrawerOpen} onClick={toggleDrawer} anchor="left">
+		<Drawer
+			open={isDrawerOpen}
+			onClick={toggleDrawer}
+			anchor="left"
+			PaperProps={{ sx: { backgroundColor: "#FFF8DE" } }}
+		>
 			<Box sx={{ display: "flex", justifyContent: "flex-end" }}>
 				<IconButton onClick={toggleDrawer}>
 					<CloseIcon fontSize="large" />
@@ -44,7 +49,10 @@ function CategoriesDrawer({ toggleDrawer, isDrawerOpen }) {
 			>
 				Search By Category
 			</Typography>
-			<List disablePadding sx={{ width: { xs: "90vw", sm: "400px" }, mb: '75px' }}>
+			<List
+				disablePadding
+				sx={{ width: { xs: "90vw", sm: "400px" }, mb: "75px" }}
+			>
 				{allCategories &&
 					allCategories.map((category) => {
 						return (

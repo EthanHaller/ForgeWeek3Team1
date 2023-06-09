@@ -1,6 +1,6 @@
 import { Box, Drawer, IconButton, TextField, Typography } from "@mui/material"
 import React, { useState } from "react"
-import { Navigate, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import SearchIcon from "@mui/icons-material/Search"
 import CloseIcon from "@mui/icons-material/Close"
 
@@ -25,7 +25,11 @@ function Search({ isMobile }) {
 			<IconButton onClick={toggleSearchDrawer}>
 				<SearchIcon fontSize={isMobile ? "medium" : "large"} />
 			</IconButton>
-			<Drawer anchor="right" open={isSearchDrawerOpen}>
+			<Drawer
+				anchor="right"
+				open={isSearchDrawerOpen}
+				PaperProps={{ sx: { backgroundColor: "#FFF8DE" } }}
+			>
 				<Box sx={{ width: { xs: "90vw", sm: "400px" } }}>
 					<Box sx={{ display: "flex", justifyContent: "flex-end" }}>
 						<IconButton onClick={toggleSearchDrawer}>

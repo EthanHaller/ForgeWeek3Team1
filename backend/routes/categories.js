@@ -32,7 +32,7 @@ router.get("/", (req, res, next) => {
 function formatCategories(categories) {
 	const formattedCategories = []
 	categories.forEach((item) => {
-		const formatted = item.replaceAll("-", " ")
+		const formatted = item.replace("-", " ")
 		const capitalized = formatted.replace(
 			/(^\w{1})|(\s+\w{1})/g,
 			(letter) => letter.toUpperCase()

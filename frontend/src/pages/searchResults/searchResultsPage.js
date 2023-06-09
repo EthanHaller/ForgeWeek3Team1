@@ -1,4 +1,4 @@
-import react, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./SearchResults.css"
 import { Link, useParams } from 'react-router-dom';
 import { Card, CardContent, CardMedia, CardActionArea, Typography, Button, Checkbox, FormGroup, FormControlLabel, Drawer, IconButton, TextField, MenuItem } from '@mui/material';

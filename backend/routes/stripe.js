@@ -28,8 +28,8 @@ router.post("/", async (req, res, next) => {
 		line_items: lineItems,
 		mode: "payment",
 		success_url:
-			"http://localhost:3000/order/success?session_id={CHECKOUT_SESSION_ID}",
-		cancel_url: "http://localhost:3000/cart",
+			"https://glittery-malasada-22e17e.netlify.app//order/success?session_id={CHECKOUT_SESSION_ID}",
+		cancel_url: "https://glittery-malasada-22e17e.netlify.app//cart",
 	})
 	res.send(session.url)
 })

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { AppBar, Toolbar, IconButton, Typography, Box } from "@mui/material"
+import { AppBar, Toolbar, IconButton, Box } from "@mui/material"
 import { Link } from "react-router-dom"
 import MenuIcon from "@mui/icons-material/Menu"
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"

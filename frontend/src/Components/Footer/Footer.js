@@ -60,7 +60,7 @@ export default function Footer() {
                 <Box mt={5}>
                     <Typography variant="body2" color="text.secondary" align="center" >
                         {"Copyright © "}
-                        <Link color="inherit" href="http://localhost:3000">
+                        <Link color="inherit" href="https://glittery-malasada-22e17e.netlify.app/">
                             Your Website
                         </Link>{" "}
                         {new Date().getFullYear()}

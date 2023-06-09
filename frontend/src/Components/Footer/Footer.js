@@ -61,7 +61,7 @@ export default function Footer() {
                     <Typography variant="body2" color="text.secondary" align="center" >
                         {"Copyright © "}
                         <Link color="inherit" href="https://glittery-malasada-22e17e.netlify.app/">
-                            Your Website
+                            EasyBuy
                         </Link>{" "}
                         {new Date().getFullYear()}
                         {"."}

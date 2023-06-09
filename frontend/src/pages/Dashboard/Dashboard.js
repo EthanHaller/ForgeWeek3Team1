@@ -98,10 +98,8 @@ export default function Dashboard() {
 			})
 		)
 
-		setPreviousOrdersDisplay(result)
+		setPreviousOrdersDisplay(result.reverse())
 	}
-
-	console.log(previousOrdersDisplay)
 
 	return (
 		<React.Fragment>

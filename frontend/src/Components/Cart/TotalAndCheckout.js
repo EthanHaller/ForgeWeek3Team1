@@ -21,12 +21,6 @@ function TotalAndCheckout() {
 	const [cartItems, setCartItems] = useState([])
 	const [showCheckoutDialog, setShowCheckoutDialog] = useState(false)
 	const { currentUser } = useAuth()
-	// console.log("current user: ",currentUser)
-
-	// useEffect(() => {
-	// 	fetchItems()
-	// }, [testProducts])
-
 	const fetchItems = async () => {
 		const items = []
 		for (const productId of testProducts) {
@@ -38,7 +32,6 @@ function TotalAndCheckout() {
 		}
 		setCartItems(items)
 	}
-	//const [cartItems, setCartItems] = useState([]);
 
 	const attemptCheckout = () => {
 		fetchItems()
@@ -49,8 +42,6 @@ function TotalAndCheckout() {
 
 	const handleCheckout = () => {
 		setShowCheckoutDialog(false)
-		console.log("cart items", cartItems)
-
 		axios
 			.post("http://localhost:9000/checkout", { items: cartItems })
 			.then((res) => (window.location.href = res.data))

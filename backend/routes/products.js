@@ -1,5 +1,5 @@
-const express = require("express");
-const router = express.Router();
+var express = require("express");
+var router = express.Router();
 
 router.put("/get-products", async (req, res) => {
 
@@ -91,6 +91,12 @@ router.put("/get-item", async (req, res) => {
             break;
     }
     res.json({ item: result });
+})
+
+router.get("/get-product/:productId", (req, res, next) => {
+    fetch(`https://dummyjson.com/products/${req.params.productId}`)
+    .then(res => res.json())
+    .then(j => res.send(j))
 })
 
 module.exports = router;

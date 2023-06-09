@@ -6,11 +6,14 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 import Search from "./Search"
 import CategoriesDrawer from "./CategoriesDrawer"
 import AccountCircleIcon from "@mui/icons-material/AccountCircle"
+import LoginIcon from '@mui/icons-material/Login';
 import logo from './logo-no-background.png';
+import { useAuth } from "../../context/AuthContext"
 
 function Navbar() {
 	const [isMobile, setIsMobile] = useState(false)
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+	const { currentUser } = useAuth()
 
 	const toggleDrawer = () => {
 		setIsDrawerOpen(!isDrawerOpen)
@@ -31,7 +34,7 @@ function Navbar() {
 
 	return (
 		<>
-			<AppBar position="fixed">
+			<AppBar position="sticky">
 				<Toolbar sx={{ justifyContent: "space-between" }}>
 					<Box
 						sx={{
@@ -77,9 +80,15 @@ function Navbar() {
 							/>
 						</IconButton>
 						<IconButton component={Link} to="/dashboard">
-							<AccountCircleIcon
-								fontSize={isMobile ? "medium" : "large"}
-							/>
+							{currentUser ? (
+								<AccountCircleIcon
+									fontSize={isMobile ? "medium" : "large"}
+								/>
+							) : (
+								<LoginIcon
+									fontSize={isMobile ? "medium" : "large"}
+								/>
+							)}
 						</IconButton>
 					</Box>
 					<CategoriesDrawer

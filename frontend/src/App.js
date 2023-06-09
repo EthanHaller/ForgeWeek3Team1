@@ -23,20 +23,21 @@ function App() {
 	const [prodSize, setProdSize] = useState([]);
 
 	return (
-		<CartContext.Provider
-			value={{
-				testProducts,
-				setTestProducts,
-				prodColors,
-				setProdColors,
-				prodSize,
-				setProdSize,
-			}}
-		>
-			<ThemeProvider theme={theme}>
-				<BrowserRouter>
-					<Navbar />
-					<AuthProvider>
+		<AuthProvider>
+			<CartContext.Provider
+				value={{
+					testProducts,
+					setTestProducts,
+					prodColors,
+					setProdColors,
+					prodSize,
+					setProdSize,
+				}}
+			>
+				<ThemeProvider theme={theme}>
+					<BrowserRouter>
+						<Navbar />
+
 						<div style={{ paddingTop: "88px" }}>
 							<Routes>
 								<Route path="/" element={<HomePage />} />
@@ -62,10 +63,10 @@ function App() {
 								/>
 							</Routes>
 						</div>
-					</AuthProvider>
-				</BrowserRouter>
-			</ThemeProvider>
-		</CartContext.Provider>
+					</BrowserRouter>
+				</ThemeProvider>
+			</CartContext.Provider>
+		</AuthProvider>
 	);
 }
 

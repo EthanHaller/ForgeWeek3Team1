@@ -498,11 +498,9 @@ function Cart() {
 	}, [testProducts]);
 
 	useEffect(() => {
-		// Calculate total price whenever cartItems change
-		const totalPrice = cartItems.reduce((acc, item) => acc + item.price, 0);
-		setTotalPrice(totalPrice);
-	}, [cartItems, testProducts]);
-
+		setCart(cookies["cart"])
+		fetchItems(cookies["cart"])
+	}, [cookies["cart"]])
 	useEffect(() => {
 		fetchItems();
 		console.log(testProducts);
@@ -527,33 +525,31 @@ function Cart() {
 	};
 
 	const handleRemoveItem = (productId) => {
-		setRemoveItemId(productId);
-		setConfirmationOpen(true);
-	};
+		setRemoveItemId(productId)
+		setConfirmationOpen(true)
+	}
 
 	const removeFromCart = () => {
-		const updatedCart = [...testProducts];
-		const index = updatedCart.indexOf(removeItemId);
+		const updatedCart = [...cart]
+		const index = updatedCart.indexOf(removeItemId)
 
 		if (index > -1) {
-			updatedCart.splice(index, 1);
-			setCart(updatedCart);
-			setTestProducts(updatedCart);
+			updatedCart.splice(index, 1)
+			setCookie("cart", updatedCart)
 		}
 
-		setConfirmationOpen(false);
-		setRemoveItemId(null);
-	};
+		setConfirmationOpen(false)
+		setRemoveItemId(null)
+	}
 
 	const addToCart = (itemID) => {
-		const updatedCart = [...testProducts, itemID];
-		setTestProducts(updatedCart);
-	};
+		setCookie('cart',[...cart, itemID])
+	}
 
 	const handleCloseConfirmation = () => {
-		setConfirmationOpen(false);
-		setRemoveItemId(null);
-	};
+		setConfirmationOpen(false)
+		setRemoveItemId(null)
+	}
 
 	const fetchMore = async (categoryName) => {
 		const response = await fetch(
@@ -575,17 +571,37 @@ function Cart() {
 
 		// Count the occurrences of each category
 		for (const category of categories) {
-			categoryCounts[category] = (categoryCounts[category] || 0) + 1;
+			categoryCounts[category] = (categoryCounts[category] || 0) + 1
 		}
 
-		const maxCount = Math.max(...Object.values(categoryCounts));
+		const maxCount = Math.max(...Object.values(categoryCounts))
 		const mostFrequentCategory = Object.keys(categoryCounts).find(
 			(category) => categoryCounts[category] === maxCount
-		);
+		)
 
-		console.log("Most frequent category:", mostFrequentCategory);
-		fetchMore(mostFrequentCategory);
-	}, [cartItems, testProducts]);
+		fetchRecommendedItems(mostFrequentCategory)
+	}
+	const fetchRecommendedItems = async (categoryName) => {
+		let items;
+		await fetch("http://localhost:9000/products/get-products", {
+			method: "put",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({ category: "category/" + categoryName })
+		})
+		.then(res => res.json())
+		.then(data => {
+			items = data.results.filter((item) => {
+				// Check if the item title is already in the cartItems
+				return !cartItems.some((cartItem) => cartItem.title === item.title)
+			})
+		})
+
+		setRecItems(items)
+	}
+
+	const totalPrice = cartItems.reduce((acc, item) => acc + item.price, 0)
 
 	return (
 		<div>
@@ -601,10 +617,9 @@ function Cart() {
 				}}
 			>
 				<Typography
-					fontSize="40px"
 					variant="h6"
 					align="center"
-					sx={{ padding: "0px" }}
+					sx={{ padding: "0px", fontSize: "calc(32px + 0.5vw)" }}
 				>
 					My Cart
 				</Typography>
@@ -615,7 +630,11 @@ function Cart() {
 			) : (
 				<div>
 					<Container style={{ width: "75%", margin: "0 auto" }}>
-						<Box display="flex" flexDirection="column" alignItems="center">
+						<Box
+							display="flex"
+							flexDirection="column"
+							alignItems="center"
+						>
 							{cartItems.map((item, index) => (
 								<Card
 									key={`${item.id}-${index}`}
@@ -625,13 +644,29 @@ function Cart() {
 									}}
 								>
 									<CardContent>
-										<Typography variant="h6">{item.title}</Typography>
-										<Typography variant="body2">${item.price}.00</Typography>
-										<Typography variant="body2">{item.description}</Typography>
-										<Box display="flex" justifyContent="flex-end">
-											<Box display="flex" justifyContent="flex-end">
+										<Typography variant="h6">
+											{item.title}
+										</Typography>
+										<Typography variant="body2">
+											${item.price}.00
+										</Typography>
+										<Typography variant="body2">
+											{item.description}
+										</Typography>
+										<Box
+											display="flex"
+											justifyContent="flex-end"
+										>
+											<Box
+												display="flex"
+												justifyContent="flex-end"
+											>
 												<IconButton
-													onClick={() => handleRemoveItem(item.id)}
+													onClick={() =>
+														handleRemoveItem(
+															item.id
+														)
+													}
 													style={{
 														color: "white",
 														backgroundColor: "red",
@@ -649,20 +684,23 @@ function Cart() {
 								</Card>
 							))}
 						</Box>
-						<TotalAndCheckout price={totalPrice.toFixed(2)} />
+						<TotalAndCheckout cartItems={cartItems} price={totalPrice.toFixed(2)} />
 					</Container>
 
 					<Typography
-						fontSize="40px"
 						variant="h6"
 						align="center"
-						sx={{ padding: "0px" }}
+						sx={{ padding: "0px", fontSize: "calc(32px + 0.5vw)" }}
 					>
 						Recommended Items
 					</Typography>
 
 					<Container style={{ width: "75%", margin: "0 auto" }}>
-						<Box display="flex" flexDirection="column" alignItems="center">
+						<Box
+							display="flex"
+							flexDirection="column"
+							alignItems="center"
+						>
 							{recItems.map((item2, index) => (
 								<Card
 									key={`${item2.id}-${index}`}
@@ -672,21 +710,36 @@ function Cart() {
 									}}
 								>
 									<CardContent>
-										<Typography variant="h6">{item2.title}</Typography>
-										<Typography variant="body2">${item2.price}.00</Typography>
-										<Typography variant="body2">{item2.description}</Typography>
-										<Box display="flex" justifyContent="flex-end">
-											<Box display="flex" justifyContent="flex-end">
+										<Typography variant="h6">
+											{item2.title}
+										</Typography>
+										<Typography variant="body2">
+											${item2.price}.00
+										</Typography>
+										<Typography variant="body2">
+											{item2.description}
+										</Typography>
+										<Box
+											display="flex"
+											justifyContent="flex-end"
+										>
+											<Box
+												display="flex"
+												justifyContent="flex-end"
+											>
 												<IconButton
 													style={{
 														color: "white",
-														backgroundColor: "green",
+														backgroundColor:
+															"green",
 													}}
 													sx={{
 														borderRadius: "4px",
 													}}
 													size="small"
-													onClick={() => addToCart(item2.id)}
+													onClick={() =>
+														addToCart(item2.id)
+													}
 												>
 													<AddShoppingCartIcon />
 												</IconButton>
@@ -709,7 +762,9 @@ function Cart() {
 					Are you sure you want to remove this item from your cart?
 				</DialogTitle>
 				<DialogActions>
-					<Button onClick={handleCloseConfirmation}>Keep in Cart</Button>
+					<Button onClick={handleCloseConfirmation}>
+						Keep in Cart
+					</Button>
 					<Button
 						onClick={removeFromCart}
 						variant="contained"
@@ -720,7 +775,7 @@ function Cart() {
 				</DialogActions>
 			</Dialog>
 		</div>
-	);
+	)
 }
 
 export default Cart;

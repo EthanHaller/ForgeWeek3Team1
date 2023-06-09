@@ -17,7 +17,7 @@ export default function Dashboard() {
 	}, [])
 	const fetchPreviousOrders = async () => {
 		axios
-			.get(`http://localhost:9000/previous-orders/${currentUser.uid}`)
+			.get(`https://easybuy-7xer.onrender.com/previous-orders/${currentUser.uid}`)
 			.then((res) => setPreviousOrders(res.data))
 	}
 	useEffect(() => {
@@ -48,7 +48,7 @@ export default function Dashboard() {
 					order.items.map(async (item) => {
 						try {
 							const response = await axios.get(
-								`http://localhost:9000/products/get-product/${item.itemId}`
+								`https://easybuy-7xer.onrender.com/products/get-product/${item.itemId}`
 							)
 							totalPrice += response.data.price * item.quantity
 							orderItemsDisplay.push(

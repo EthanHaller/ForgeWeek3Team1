@@ -70,7 +70,7 @@ export default function ItemPage() {
 	};
 
 	async function getItem() {
-		await fetch("http://localhost:9000/products/get-item", {
+		await fetch("https://easybuy-7xer.onrender.com/products/get-item", {
 			method: "put",
 			headers: {
 				"Content-Type": "application/json",
@@ -86,7 +86,7 @@ export default function ItemPage() {
 
 	async function getOtherItems() {
 		if (thisItem) {
-			await fetch("http://localhost:9000/products/get-products", {
+			await fetch("https://easybuy-7xer.onrender.com/products/get-products", {
 				method: "put",
 				headers: {
 					"Content-Type": "application/json",

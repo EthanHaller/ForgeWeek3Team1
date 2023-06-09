@@ -21,7 +21,7 @@ const FeaturedProducts = () => {
   const [itemThree, setItemThree] = useState();
 
   async function getItems() {
-    await fetch("http://localhost:9000/products/get-item", {
+    await fetch("https://easybuy-7xer.onrender.com/products/get-item", {
       method: "put",
       headers: {
         "Content-Type": "application/json"
@@ -30,7 +30,7 @@ const FeaturedProducts = () => {
     })
       .then((response) => response.json())
       .then((data) => setItemOne(data))
-    await fetch("http://localhost:9000/products/get-item", {
+    await fetch("https://easybuy-7xer.onrender.com/products/get-item", {
       method: "put",
       headers: {
         "Content-Type": "application/json"
@@ -39,7 +39,7 @@ const FeaturedProducts = () => {
     })
       .then((response) => response.json())
       .then((data) => setItemTwo(data))
-    await fetch("http://localhost:9000/products/get-item", {
+    await fetch("https://easybuy-7xer.onrender.com/products/get-item", {
       method: "put",
       headers: {
         "Content-Type": "application/json"

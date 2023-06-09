@@ -22,7 +22,7 @@ function CategoriesDrawer({ toggleDrawer, isDrawerOpen }) {
 
 	const getAllCategories = () => {
 		axios
-			.get("http://localhost:9000/categories")
+			.get("https://easybuy-7xer.onrender.com/categories")
 			.then((res) => setAllCategories(res.data.results))
 	}
 

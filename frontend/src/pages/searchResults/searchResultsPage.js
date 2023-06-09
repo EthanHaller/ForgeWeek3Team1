@@ -28,7 +28,7 @@ export default function SearchResultsPage() {
     //fetching product list
     async function getProducts() {
         if (category === "all") {
-            await fetch("http://localhost:9000/products/get-products", {
+            await fetch("https://easybuy-7xer.onrender.com/products/get-products", {
                 method: "put",
                 headers: {
                     "Content-Type": "application/json"
@@ -40,7 +40,7 @@ export default function SearchResultsPage() {
         }
 
         else if (category.substring(0, 2) === "q=") {
-            await fetch("http://localhost:9000/products/get-products", {
+            await fetch("https://easybuy-7xer.onrender.com/products/get-products", {
                 method: "put",
                 headers: {
                     "Content-Type": "application/json"
@@ -51,7 +51,7 @@ export default function SearchResultsPage() {
                 .then((data) => setProducts(data))
         }
         else {
-            await fetch("http://localhost:9000/products/get-products", {
+            await fetch("https://easybuy-7xer.onrender.com/products/get-products", {
                 method: "put",
                 headers: {
                     "Content-Type": "application/json"

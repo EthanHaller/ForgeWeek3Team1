@@ -48,7 +48,7 @@ function TotalAndCheckout() {
 	const handleCheckout = () => {
 		setShowCheckoutDialog(false)
 		axios
-			.post("http://localhost:9000/checkout", { items: cartItems })
+			.post("https://easybuy-7xer.onrender.com/checkout", { items: cartItems })
 			.then((res) => (window.location.href = res.data))
 	}
 

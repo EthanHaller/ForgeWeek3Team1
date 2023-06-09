@@ -18,7 +18,7 @@ function CheckoutSuccessPage() {
 	const getCheckoutInfo = () => {
 		axios
 			.get(
-				`http://localhost:9000/checkout/order/success?session_id=${sessionID}`,
+				`https://easybuy-7xer.onrender.com/checkout/order/success?session_id=${sessionID}`,
 				{
 					query: sessionID,
 				}
@@ -27,7 +27,7 @@ function CheckoutSuccessPage() {
 				console.log(res.data)
 				setName(res.data.results)
 				if (currentUser) {
-					axios.post("http://localhost:9000/previous-orders/add", {
+					axios.post("https://easybuy-7xer.onrender.com/previous-orders/add", {
 						sessionId: sessionID,
 						data: res.data,
 						user: currentUser.uid,
@@ -74,5 +74,3 @@ function CheckoutSuccessPage() {
 }
 
 export default CheckoutSuccessPage
-
-// http://localhost:3000/order/success?session_id=cs_test_b1xWXooxVjW48thcUVoGv214RgLVbKuHri0vdTemJsuGTZ9htYEunExL3z

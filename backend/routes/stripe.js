@@ -3,8 +3,6 @@ var router = express.Router()
 var Stripe = require("stripe")
 var stripe = Stripe(process.env.REACT_APP_STRIPE_SECRET)
 
-const domain = "http://localhost:3000"
-
 router.post("/", async (req, res, next) => {
 	const { items } = req.body
 
@@ -16,12 +14,14 @@ router.post("/", async (req, res, next) => {
 					name: item.title,
 					description: item.description,
 					images: item.images,
+					metadata: {
+						itemId: item.id
+					}
 				},
 				unit_amount: item.price * 100,
 			},
 			quantity: 1,
 		}
-		console.log(lineItems)
 	})
 
 	const session = await stripe.checkout.sessions.create({
@@ -51,14 +51,30 @@ router.post("/", async (req, res, next) => {
 })
 
 router.get("/order/success", async (req, res, next) => {
-	const session = await stripe.checkout.sessions.retrieve(
-		req.query.session_id
-	)
-	const lineItems = await stripe.checkout.sessions.listLineItems(
-		req.query.session_id
-	)
+    const session = await stripe.checkout.sessions.retrieve(
+        req.query.session_id
+    );
+    const lineItems = await stripe.checkout.sessions.listLineItems(
+        req.query.session_id
+    );
 
-	res.send({ results: session.customer_details.name, lineItems: lineItems })
-})
+    // Fetch the product data for each line item
+    const lineItemsWithMetadata = await Promise.all(
+        lineItems.data.map(async (lineItem) => {
+            const product = await stripe.products.retrieve(
+                lineItem.price.product
+            );
+            return {
+                ...lineItem,
+                metadata: product.metadata
+            };
+        })
+    );
+
+    res.send({
+        results: session.customer_details.name,
+        lineItems: lineItemsWithMetadata
+    });
+});
 
 module.exports = router
